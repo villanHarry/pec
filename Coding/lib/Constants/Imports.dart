@@ -1,3 +1,4 @@
+export 'package:flutter/services.dart';
 export 'dart:io';
 export 'Assets.dart';
 export 'Strings.dart';
@@ -19,6 +20,7 @@ export 'package:image_picker/image_picker.dart';
 export 'package:cloudinary_public/cloudinary_public.dart';
 export '../Services/API/Authentication.dart';
 export 'package:cached_network_image/cached_network_image.dart';
+export 'package:pec/Screen/SplashScreen.dart';
 
 //Internet check
 export '../Services/InternetCheck.dart';

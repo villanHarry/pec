@@ -1,6 +1,3 @@
-import 'package:flutter/services.dart';
-import 'package:pec/Screen/SplashScreen.dart';
-
 import 'Constants/Imports.dart';
 
 void main() async {

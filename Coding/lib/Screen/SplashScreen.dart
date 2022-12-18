@@ -12,7 +12,8 @@ class _splashScreenState extends State<splashScreen>
   @override
   void initState() {
     Timer(const Duration(seconds: 5), () {
-      if (Boxes.getUser().values.cast<User>().first != null) {
+      var box = Boxes.getUser();
+      if (box.isNotEmpty) {
         Screen.replace(context, const HomeScreen());
       } else {
         Screen.replace(context, const WelcomeScreen());

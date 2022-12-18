@@ -36,6 +36,9 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
 
   @override
   void initState() {
+    SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
+        statusBarIconBrightness: Brightness.light,
+        statusBarColor: Colors.transparent));
     Timer(const Duration(milliseconds: 270), () {
       _controller.forward();
     });
@@ -167,115 +170,86 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
           padding: const EdgeInsets.symmetric(horizontal: 18.5),
           child: Column(
             children: [
-              Stack(
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   SizedBox(
-                    width: width,
+                    height: height > 840 ? width * .1 : width * .07,
                   ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
                     children: [
-                      SizedBox(
-                        height: height > 840 ? width * .28 : width * .23,
+                      Stack(
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: CachedNetworkImage(
+                              imageUrl: CurrentUser.image,
+                              imageBuilder: (context, imageProvider) =>
+                                  Container(
+                                height: width * 0.16,
+                                width: width * 0.16,
+                                decoration: BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  image: DecorationImage(
+                                      image: imageProvider, fit: BoxFit.cover),
+                                ),
+                              ),
+                              progressIndicatorBuilder:
+                                  (context, url, progress) => Container(
+                                height: width * 0.16,
+                                width: width * 0.16,
+                                decoration: const BoxDecoration(
+                                    color: Color(0xFF4C48EE),
+                                    shape: BoxShape.circle),
+                                child: CircularProgressIndicator(
+                                  value: progress.progress,
+                                  strokeWidth: 2.5,
+                                  color: white,
+                                ),
+                              ),
+                              errorWidget: (context, url, error) =>
+                                  const Icon(Icons.error),
+                            ),
+                          ),
+                          Positioned(
+                            right: 0,
+                            child: Container(
+                              decoration: BoxDecoration(
+                                  border: Border.all(
+                                      color: const Color(0xFFFCFBFF),
+                                      width: 4.0),
+                                  shape: BoxShape.circle),
+                              child: Container(
+                                height: width * 0.025,
+                                width: width * 0.025,
+                                decoration: const BoxDecoration(
+                                    color: const Color(0xFF4C48EE),
+                                    shape: BoxShape.circle),
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
-                      Text(
-                        "Meetings",
-                        style: TextStyle(
-                            color: const Color(0xFF091A31),
-                            fontFamily: bold,
-                            fontSize: 35,
-                            letterSpacing: 0.5,
-                            fontWeight: FontWeight.w900),
-                      ),
-                      Text("Welcome to PEC Schedule Daily Meetings",
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                              color: const Color(0xFF818182),
-                              fontFamily: reg,
-                              fontSize: 13,
-                              height: 1,
-                              fontWeight: FontWeight.w600)),
                     ],
                   ),
-                  Positioned(
-                    top: height > 840 ? width * 0.13 : width * 0.04,
-                    right: 0,
-                    child: Row(
-                      mainAxisSize: MainAxisSize.min,
-                      crossAxisAlignment: CrossAxisAlignment.end,
-                      children: [
-                        Stack(
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: CachedNetworkImage(
-                                imageUrl: CurrentUser.image,
-                                imageBuilder: (context, imageProvider) =>
-                                    Container(
-                                  height: width * 0.16,
-                                  width: width * 0.16,
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(12),
-                                    image: DecorationImage(
-                                        image: imageProvider,
-                                        fit: BoxFit.cover),
-                                  ),
-                                ),
-                                progressIndicatorBuilder:
-                                    (context, url, progress) => SizedBox(
-                                  height: width * 0.16,
-                                  width: width * 0.16,
-                                  child: CircularProgressIndicator(
-                                    value: progress.progress,
-                                    strokeWidth: 2.5,
-                                    color: const Color(0xFF4C48EE),
-                                  ),
-                                ),
-                                errorWidget: (context, url, error) =>
-                                    const Icon(Icons.error),
-                              ),
-                            ),
-                            Positioned(
-                              right: 0,
-                              child: Container(
-                                decoration: BoxDecoration(
-                                    border: Border.all(
-                                        color: const Color(0xFFFCFBFF),
-                                        width: 4.0),
-                                    shape: BoxShape.circle),
-                                child: Container(
-                                  height: width * 0.025,
-                                  width: width * 0.025,
-                                  decoration: const BoxDecoration(
-                                      color: Color(0xFF54CB49),
-                                      shape: BoxShape.circle),
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.symmetric(vertical: 10.0),
-                          child: Icon(
-                            Icons.edit_sharp,
-                            size: width * 0.05,
-                            color: const Color(0xFF54CB49),
-                          ),
-                        )
-                      ],
-                    ),
+                  Text(
+                    "Meetings",
+                    style: TextStyle(
+                        color: const Color(0xFF091A31),
+                        fontFamily: bold,
+                        fontSize: 35,
+                        letterSpacing: 0.5,
+                        fontWeight: FontWeight.w900),
                   ),
-                  Positioned(
-                    bottom: width * 0.06,
-                    right: width * 0.07,
-                    child: Text(CurrentUser.fullname,
-                        style: TextStyle(
-                            color: const Color(0xFF091A31),
-                            fontFamily: bold,
-                            fontSize: height > 840 ? 18 : 16,
-                            letterSpacing: 0.8,
-                            fontWeight: FontWeight.w800)),
-                  ),
+                  Text("Welcome to PEC Schedule Daily Meetings",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                          color: const Color(0xFF818182),
+                          fontFamily: reg,
+                          fontSize: 13,
+                          height: 1,
+                          fontWeight: FontWeight.w600)),
                 ],
               ),
               SizedBox(
@@ -449,7 +423,7 @@ class _MeetingNodeState extends State<MeetingNode> {
     var height = MediaQuery.of(context).size.height;
     var width = MediaQuery.of(context).size.width;
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 8.0),
+      padding: const EdgeInsets.symmetric(vertical: 10.0),
       child: Container(
         width: width,
         decoration: BoxDecoration(
