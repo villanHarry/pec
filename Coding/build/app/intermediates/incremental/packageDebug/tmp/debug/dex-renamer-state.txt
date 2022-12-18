@@ -1,0 +1,4 @@
+#Sat Dec 17 23:47:37 PKT 2022
+base.0=/Users/fawad.mehmood/DATA/Projects/PEC/Coding/build/app/intermediates/dex/debug/mergeDexDebug/classes.dex
+renamed.0=classes.dex
+path.0=classes.dex
