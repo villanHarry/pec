@@ -120,7 +120,11 @@ class _GreetingScreenState extends State<GreetingScreen>
                 child: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 40),
                     child: InkWell(
-                      onTap: () {},
+                      onTap: () {
+                        var box = Boxes.getUser();
+                        box.clear();
+                        Screen.popallstack(context, const loginScreen());
+                      },
                       child: Container(
                         height: height > 840 ? height / 16 : height / 14,
                         width: width,

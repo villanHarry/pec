@@ -1,13 +1,13 @@
 <libraries>
   <library
-      name="__local_aars__:/Users/fawad.mehmood/DATA/Projects/PEC/Coding/build/app/intermediates/flutter/release/libs.jar:unspecified@jar"
-      jars="/Users/fawad.mehmood/DATA/Projects/PEC/Coding/build/app/intermediates/flutter/release/libs.jar"
-      resolved="__local_aars__:/Users/fawad.mehmood/DATA/Projects/PEC/Coding/build/app/intermediates/flutter/release/libs.jar:unspecified"/>
+      name="__local_aars__:/Users/fawad.mehmood/DATA/Projects/pec/Coding/build/app/intermediates/flutter/release/libs.jar:unspecified@jar"
+      jars="/Users/fawad.mehmood/DATA/Projects/pec/Coding/build/app/intermediates/flutter/release/libs.jar"
+      resolved="__local_aars__:/Users/fawad.mehmood/DATA/Projects/pec/Coding/build/app/intermediates/flutter/release/libs.jar:unspecified"/>
   <library
-      name="/Users/fawad.mehmood/DATA/Projects/PEC/Coding/android@@:flutter_plugin_android_lifecycle::release"
-      jars="/Users/fawad.mehmood/DATA/Projects/PEC/Coding/build/flutter_plugin_android_lifecycle/.transforms/d27f7e60b5d8194344a49f70b785a17c/transformed/out/jars/classes.jar"
+      name="/Users/fawad.mehmood/DATA/Projects/pec/Coding/android@@:flutter_plugin_android_lifecycle::release"
+      jars="/Users/fawad.mehmood/DATA/Projects/pec/Coding/build/flutter_plugin_android_lifecycle/.transforms/4d9753c04100b8e87b611071cb380e94/transformed/out/jars/classes.jar"
       resolved="io.flutter.plugins.flutter_plugin_android_lifecycle:flutter_plugin_android_lifecycle:unspecified"
-      folder="/Users/fawad.mehmood/DATA/Projects/PEC/Coding/build/flutter_plugin_android_lifecycle/.transforms/d27f7e60b5d8194344a49f70b785a17c/transformed/out"
+      folder="/Users/fawad.mehmood/DATA/Projects/pec/Coding/build/flutter_plugin_android_lifecycle/.transforms/4d9753c04100b8e87b611071cb380e94/transformed/out"
       manifest="AndroidManifest.xml"
       resFolder="res"
       assetsFolder="assets"
@@ -17,10 +17,10 @@
       externalAnnotations="annotations.zip"
       proguardRules="proguard.txt"/>
   <library
-      name="/Users/fawad.mehmood/DATA/Projects/PEC/Coding/android@@:sqflite::release"
-      jars="/Users/fawad.mehmood/DATA/Projects/PEC/Coding/build/sqflite/.transforms/30d9ec342fbcba26b25c04195c40ee56/transformed/out/jars/classes.jar"
+      name="/Users/fawad.mehmood/DATA/Projects/pec/Coding/android@@:sqflite::release"
+      jars="/Users/fawad.mehmood/DATA/Projects/pec/Coding/build/sqflite/.transforms/23893fba8036a4b1062c8605af9c3ac2/transformed/out/jars/classes.jar"
       resolved="com.tekartik.sqflite:sqflite:unspecified"
-      folder="/Users/fawad.mehmood/DATA/Projects/PEC/Coding/build/sqflite/.transforms/30d9ec342fbcba26b25c04195c40ee56/transformed/out"
+      folder="/Users/fawad.mehmood/DATA/Projects/pec/Coding/build/sqflite/.transforms/23893fba8036a4b1062c8605af9c3ac2/transformed/out"
       manifest="AndroidManifest.xml"
       resFolder="res"
       assetsFolder="assets"
@@ -30,10 +30,10 @@
       externalAnnotations="annotations.zip"
       proguardRules="proguard.txt"/>
   <library
-      name="/Users/fawad.mehmood/DATA/Projects/PEC/Coding/android@@:image_picker::release"
-      jars="/Users/fawad.mehmood/DATA/Projects/PEC/Coding/build/image_picker/.transforms/577509ca7b36433917c62dd02d88d52c/transformed/out/jars/classes.jar"
+      name="/Users/fawad.mehmood/DATA/Projects/pec/Coding/android@@:image_picker::release"
+      jars="/Users/fawad.mehmood/DATA/Projects/pec/Coding/build/image_picker/.transforms/def63b76599769fe16060d9c413d429a/transformed/out/jars/classes.jar"
       resolved="io.flutter.plugins.imagepicker:image_picker:unspecified"
-      folder="/Users/fawad.mehmood/DATA/Projects/PEC/Coding/build/image_picker/.transforms/577509ca7b36433917c62dd02d88d52c/transformed/out"
+      folder="/Users/fawad.mehmood/DATA/Projects/pec/Coding/build/image_picker/.transforms/def63b76599769fe16060d9c413d429a/transformed/out"
       manifest="AndroidManifest.xml"
       resFolder="res"
       assetsFolder="assets"
@@ -43,10 +43,10 @@
       externalAnnotations="annotations.zip"
       proguardRules="proguard.txt"/>
   <library
-      name="/Users/fawad.mehmood/DATA/Projects/PEC/Coding/android@@:path_provider_android::release"
-      jars="/Users/fawad.mehmood/DATA/Projects/PEC/Coding/build/path_provider_android/.transforms/54f50a2ad565fd090afbb181503ae41c/transformed/out/jars/classes.jar"
+      name="/Users/fawad.mehmood/DATA/Projects/pec/Coding/android@@:path_provider_android::release"
+      jars="/Users/fawad.mehmood/DATA/Projects/pec/Coding/build/path_provider_android/.transforms/f40b1c276b7e9614eecd25a410906704/transformed/out/jars/classes.jar"
       resolved="io.flutter.plugins.pathprovider:path_provider_android:unspecified"
-      folder="/Users/fawad.mehmood/DATA/Projects/PEC/Coding/build/path_provider_android/.transforms/54f50a2ad565fd090afbb181503ae41c/transformed/out"
+      folder="/Users/fawad.mehmood/DATA/Projects/pec/Coding/build/path_provider_android/.transforms/f40b1c276b7e9614eecd25a410906704/transformed/out"
       manifest="AndroidManifest.xml"
       resFolder="res"
       assetsFolder="assets"

@@ -10,7 +10,7 @@
 		</data>
 		<key>flutter_assets/AssetManifest.json</key>
 		<data>
-		qT1tJPesMmCMPdVBw1T8FkaItKQ=
+		wTszWGTVKx3TVPPXE9sLg4aVcJM=
 		</data>
 		<key>flutter_assets/FontManifest.json</key>
 		<data>
@@ -18,19 +18,11 @@
 		</data>
 		<key>flutter_assets/NOTICES.Z</key>
 		<data>
-		mdGmNqYJ810j18qtsZ/xaVvGUvQ=
-		</data>
-		<key>flutter_assets/assets/Icons/.DS_Store</key>
-		<data>
-		qShYBJijBStWmCSMV2Oj4lLaGZ4=
+		2ylcKmcrQbJ2M1hEmYlPT2QKqNc=
 		</data>
 		<key>flutter_assets/assets/Icons/diamondShapeAvatar.png</key>
 		<data>
 		2jZ+HtnMpN+ycyWDsQf6l82pTo8=
-		</data>
-		<key>flutter_assets/assets/Images/.DS_Store</key>
-		<data>
-		zXaGdi0fm2wjJ29IYXsmk4UpGGE=
 		</data>
 		<key>flutter_assets/assets/Images/Logo.png</key>
 		<data>
@@ -51,10 +43,6 @@
 		<key>flutter_assets/assets/Images/pec.png</key>
 		<data>
 		vba6CDVVP35zDj965Q7muxlwENE=
-		</data>
-		<key>flutter_assets/assets/lottie/.DS_Store</key>
-		<data>
-		+vKM18qEbjHyh9UytaElPY7e9IY=
 		</data>
 		<key>flutter_assets/assets/lottie/cameraIcon.json</key>
 		<data>
@@ -82,7 +70,7 @@
 		</data>
 		<key>flutter_assets/kernel_blob.bin</key>
 		<data>
-		AatkpLtYYNsDxC8gqh7IeT/om94=
+		xoG6VP8fqQoUcchXO70yyRhmDyg=
 		</data>
 		<key>flutter_assets/packages/cupertino_icons/assets/CupertinoIcons.ttf</key>
 		<data>
@@ -99,7 +87,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			BzJtxELEtYYnge89PyLBXh/vMBGNXwtLHI8Mwf2/jWY=
+			IrSYzg2KTQVy8d26IIE+ewoUlTy8gJ+hbjvKfdQvPfM=
 			</data>
 		</dict>
 		<key>flutter_assets/FontManifest.json</key>
@@ -113,7 +101,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			IvbigJhoeDCNl0Pfy3U5jSYcAH3eYJsM2o1yypeKMd8=
+			WGC5gK/LYs73SKaBCM6Tlcp5zsGN00vv+7Rcu6a1F4A=
 			</data>
 		</dict>
 		<key>flutter_assets/assets/Icons/diamondShapeAvatar.png</key>
@@ -204,7 +192,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			IttafWTYO/yos7geimHAFokclk3bwJP1XBWtxFVZjq4=
+			urGNZ+LF7b01TcjFNDCc/1P4wuTmlKuLQ6UHzNqj/WQ=
 			</data>
 		</dict>
 		<key>flutter_assets/packages/cupertino_icons/assets/CupertinoIcons.ttf</key>

@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "/Users/fawad.mehmood/DATA/Projects/PEC/Coding/build/path_provider_android/intermediates/incremental/mergeReleaseResources/merged.dir/values-en-rIN/values-en-rIN.xml",
+            "outputFile": "/Users/fawad.mehmood/DATA/Projects/pec/Coding/build/path_provider_android/intermediates/merged_res/release/values-en-rIN/values-en-rIN.xml",
             "map": [
                 {
                     "source": "/Users/fawad.mehmood/.gradle/caches/transforms-3/acbce933e4b464a5224ed377a62db1f5/transformed/core-1.6.0/res/values-en-rIN/values-en-rIN.xml",
@@ -16,7 +16,7 @@
             ]
         },
         {
-            "outputFile": "/Users/fawad.mehmood/DATA/Projects/PEC/Coding/build/path_provider_android/intermediates/merged_res/release/values-en-rIN/values-en-rIN.xml",
+            "outputFile": "/Users/fawad.mehmood/DATA/Projects/pec/Coding/build/path_provider_android/intermediates/incremental/mergeReleaseResources/merged.dir/values-en-rIN/values-en-rIN.xml",
             "map": [
                 {
                     "source": "/Users/fawad.mehmood/.gradle/caches/transforms-3/acbce933e4b464a5224ed377a62db1f5/transformed/core-1.6.0/res/values-en-rIN/values-en-rIN.xml",

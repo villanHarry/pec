@@ -19,6 +19,7 @@ dependencies:
   image_picker: 
   cloudinary_public: ^0.10.0
   cached_network_image: 
+  table_calendar: ^3.0.8
   
 
 dev_dependencies:

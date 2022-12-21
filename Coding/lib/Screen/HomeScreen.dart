@@ -1,3 +1,4 @@
+import 'package:intl/intl.dart';
 import '../Constants/Imports.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -10,6 +11,11 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
   late final AnimationController _controller = AnimationController(
     duration: const Duration(milliseconds: 900),
+    vsync: this,
+  );
+
+  late final AnimationController _controller2 = AnimationController(
+    duration: const Duration(milliseconds: 300),
     vsync: this,
   );
 
@@ -31,19 +37,70 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
     curve: Curves.ease,
   ));
 
+  late final Animation<Offset> _offsetAnimation3 = Tween<Offset>(
+    begin: Offset.zero,
+    end: Offset(
+        Alignment.center.x.toDouble() - 1, Alignment.center.y.toDouble()),
+  ).animate(CurvedAnimation(
+    parent: _controller2,
+    curve: Curves.ease,
+  ));
+  DateTime currentDate = DateTime.now();
+  int firstDay = 1;
+  int lastDay = 0;
+
   var CurrentUser = Boxes.getUser().values.cast<User>().first;
   bool past = true;
+  bool showCalender = false;
 
   @override
   void initState() {
     SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
         statusBarIconBrightness: Brightness.light,
         statusBarColor: Colors.transparent));
+    _controller2.forward();
+    _controller2.addStatusListener((status) {
+      if (status == AnimationStatus.completed) {
+        setState(() {
+          showCalender = false;
+        });
+      }
+      if (status == AnimationStatus.reverse) {
+        setState(() {
+          showCalender = true;
+        });
+      }
+    });
     Timer(const Duration(milliseconds: 270), () {
       _controller.forward();
     });
+    DateSetting();
+
     // TODO: implement initState
     super.initState();
+  }
+
+  DateSetting() {
+    for (int i = 1; i <= 7; i++) {
+      if (currentDate.subtract(Duration(days: i)).weekday == 1) {
+        setState(() {
+          firstDay = i;
+        });
+      }
+      if (currentDate.add(Duration(days: i)).weekday == 7) {
+        setState(() {
+          lastDay = i;
+        });
+      }
+    }
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    _controller2.dispose();
+    // TODO: implement dispose
+    super.dispose();
   }
 
   @override
@@ -53,7 +110,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
     return Scaffold(
       backgroundColor: const Color(0xFFFCFBFF),
       appBar: appbar(),
-      /*bottomNavigationBar: bottomBar(width),*/
+      bottomNavigationBar: bottomBar(width),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 18.5),
         child: Column(
@@ -73,6 +130,53 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
             SizedBox(
               height: width * .08,
             ),
+            SlideTransition(
+                position: _offsetAnimation3,
+                child: AnimatedOpacity(
+                    opacity: showCalender ? 1.0 : 0.0,
+                    duration: const Duration(milliseconds: 300),
+                    child: Visibility(
+                      visible: showCalender,
+                      child: Padding(
+                        padding: EdgeInsets.only(bottom: width * .08),
+                        child: TableCalendar(
+                          focusedDay: currentDate,
+                          currentDay: currentDate,
+                          firstDay:
+                              currentDate.subtract(Duration(days: firstDay)),
+                          lastDay: currentDate.add(Duration(days: lastDay)),
+                          calendarFormat: CalendarFormat.week,
+                          startingDayOfWeek: StartingDayOfWeek.monday,
+                          headerVisible: false,
+                          rowHeight: 60,
+                          daysOfWeekHeight: 25,
+                          onDaySelected: (select, notSelected) {
+                            setState(() {
+                              currentDate = select;
+                            });
+                            DateSetting();
+                          },
+                          daysOfWeekStyle: DaysOfWeekStyle(
+                            dowTextFormatter: (date, locale) =>
+                                DateFormat.E(locale).format(date).toUpperCase(),
+                          ),
+                          calendarStyle: CalendarStyle(
+                            todayDecoration: const BoxDecoration(
+                                color: Color(0xFF546DF6),
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(10))),
+                            defaultDecoration: BoxDecoration(
+                                border: Border.all(color: Colors.grey),
+                                borderRadius: const BorderRadius.all(
+                                    Radius.circular(10))),
+                            weekendDecoration: BoxDecoration(
+                                border: Border.all(color: Colors.grey),
+                                borderRadius: const BorderRadius.all(
+                                    Radius.circular(10))),
+                          ),
+                        ),
+                      ),
+                    ))),
             Row(
               children: [
                 Text(
@@ -163,97 +267,96 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
     var height = MediaQuery.of(context).size.height;
     var width = MediaQuery.of(context).size.width;
     return PreferredSize(
-      preferredSize: Size(width, height > 840 ? width * 0.55 : width * 0.6),
+      preferredSize: Size(width, height > 840 ? width * 0.4 : width * 0.45),
       child: SlideTransition(
         position: _offsetAnimation,
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 18.5),
           child: Column(
             children: [
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+              SizedBox(
+                height: height > 840 ? width * .12 : width * .07,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  SizedBox(
-                    height: height > 840 ? width * .1 : width * .07,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Stack(
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: CachedNetworkImage(
-                              imageUrl: CurrentUser.image,
-                              imageBuilder: (context, imageProvider) =>
-                                  Container(
-                                height: width * 0.16,
-                                width: width * 0.16,
-                                decoration: BoxDecoration(
-                                  shape: BoxShape.circle,
-                                  image: DecorationImage(
-                                      image: imageProvider, fit: BoxFit.cover),
-                                ),
-                              ),
-                              progressIndicatorBuilder:
-                                  (context, url, progress) => Container(
-                                height: width * 0.16,
-                                width: width * 0.16,
-                                decoration: const BoxDecoration(
-                                    color: Color(0xFF4C48EE),
-                                    shape: BoxShape.circle),
-                                child: CircularProgressIndicator(
-                                  value: progress.progress,
-                                  strokeWidth: 2.5,
-                                  color: white,
-                                ),
-                              ),
-                              errorWidget: (context, url, error) =>
-                                  const Icon(Icons.error),
+                      Text(
+                        "Meetings",
+                        style: TextStyle(
+                            color: const Color(0xFF091A31),
+                            fontFamily: bold,
+                            fontSize: 35,
+                            letterSpacing: 0.5,
+                            fontWeight: FontWeight.w900),
+                      ),
+                      Text("Welcome to PEC Schedule Daily Meetings",
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                              color: const Color(0xFF818182),
+                              fontFamily: reg,
+                              fontSize: 13,
+                              height: 1,
+                              fontWeight: FontWeight.w600)),
+                    ],
+                  ),
+                  const Spacer(),
+                  Stack(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: CachedNetworkImage(
+                          imageUrl: CurrentUser.image,
+                          imageBuilder: (context, imageProvider) => Container(
+                            height: width * 0.16,
+                            width: width * 0.16,
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              image: DecorationImage(
+                                  image: imageProvider, fit: BoxFit.cover),
                             ),
                           ),
-                          Positioned(
-                            right: 0,
-                            child: Container(
-                              decoration: BoxDecoration(
-                                  border: Border.all(
-                                      color: const Color(0xFFFCFBFF),
-                                      width: 4.0),
-                                  shape: BoxShape.circle),
-                              child: Container(
-                                height: width * 0.025,
-                                width: width * 0.025,
-                                decoration: const BoxDecoration(
-                                    color: const Color(0xFF4C48EE),
-                                    shape: BoxShape.circle),
-                              ),
+                          progressIndicatorBuilder: (context, url, progress) =>
+                              Container(
+                            height: width * 0.16,
+                            width: width * 0.16,
+                            decoration: const BoxDecoration(
+                                color: Color(0xFF4C48EE),
+                                shape: BoxShape.circle),
+                            child: CircularProgressIndicator(
+                              value: progress.progress,
+                              strokeWidth: 2.5,
+                              color: white,
                             ),
                           ),
-                        ],
+                          errorWidget: (context, url, error) =>
+                              const Icon(Icons.error),
+                        ),
+                      ),
+                      Positioned(
+                        right: 0,
+                        child: Container(
+                          decoration: BoxDecoration(
+                              border: Border.all(
+                                  color: const Color(0xFFFCFBFF), width: 4.0),
+                              shape: BoxShape.circle),
+                          child: Container(
+                            height: width * 0.025,
+                            width: width * 0.025,
+                            decoration: const BoxDecoration(
+                                color: const Color(0xFF4C48EE),
+                                shape: BoxShape.circle),
+                          ),
+                        ),
                       ),
                     ],
                   ),
-                  Text(
-                    "Meetings",
-                    style: TextStyle(
-                        color: const Color(0xFF091A31),
-                        fontFamily: bold,
-                        fontSize: 35,
-                        letterSpacing: 0.5,
-                        fontWeight: FontWeight.w900),
-                  ),
-                  Text("Welcome to PEC Schedule Daily Meetings",
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                          color: const Color(0xFF818182),
-                          fontFamily: reg,
-                          fontSize: 13,
-                          height: 1,
-                          fontWeight: FontWeight.w600)),
                 ],
               ),
               SizedBox(
-                height: width * .09,
+                height: width * .07,
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 12.5),
@@ -261,7 +364,10 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                   children: [
                     Expanded(
                       child: InkWell(
-                        onTap: () {
+                        onTap: () async {
+                          if (!past) {
+                            await _controller2.forward();
+                          }
                           setState(() {
                             past = true;
                           });
@@ -309,7 +415,8 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                     ),
                     Expanded(
                       child: InkWell(
-                        onTap: () {
+                        onTap: () async {
+                          await _controller2.reverse();
                           setState(() {
                             past = false;
                           });

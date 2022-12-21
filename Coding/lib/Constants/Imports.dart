@@ -21,6 +21,7 @@ export 'package:cloudinary_public/cloudinary_public.dart';
 export '../Services/API/Authentication.dart';
 export 'package:cached_network_image/cached_network_image.dart';
 export 'package:pec/Screen/SplashScreen.dart';
+export 'package:table_calendar/table_calendar.dart';
 
 //Internet check
 export '../Services/InternetCheck.dart';

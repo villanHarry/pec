@@ -4,9 +4,9 @@
     minSdkVersion="16"
     targetSdkVersion="31"
     shrinking="true"
-    mergedManifest="/Users/fawad.mehmood/DATA/Projects/PEC/Coding/build/app/intermediates/merged_manifest/release/AndroidManifest.xml"
-    proguardFiles="/Users/fawad.mehmood/DATA/Projects/PEC/Coding/build/app/intermediates/default_proguard_files/global/proguard-android.txt-7.1.2:/Users/fawad.mehmood/DATA/Flutter SDK/flutter/packages/flutter_tools/gradle/flutter_proguard_rules.pro:proguard-rules.pro"
-    partialResultsDir="/Users/fawad.mehmood/DATA/Projects/PEC/Coding/build/app/intermediates/lint_vital_partial_results/release/out">
+    mergedManifest="/Users/fawad.mehmood/DATA/Projects/pec/Coding/build/app/intermediates/merged_manifest/release/AndroidManifest.xml"
+    proguardFiles="/Users/fawad.mehmood/DATA/Projects/pec/Coding/build/app/intermediates/default_proguard_files/global/proguard-android.txt-7.1.2:/Users/fawad.mehmood/DATA/Flutter SDK/flutter/packages/flutter_tools/gradle/flutter_proguard_rules.pro:proguard-rules.pro"
+    partialResultsDir="/Users/fawad.mehmood/DATA/Projects/pec/Coding/build/app/intermediates/lint_vital_partial_results/release/out">
   <buildFeatures
       namespacing="REQUIRED"/>
   <sourceProviders>
@@ -29,9 +29,9 @@
         value="android.app.Application" />
   </manifestPlaceholders>
   <mainArtifact
-      classOutputs="/Users/fawad.mehmood/DATA/Projects/PEC/Coding/build/app/intermediates/javac/release/classes:/Users/fawad.mehmood/DATA/Projects/PEC/Coding/build/app/tmp/kotlin-classes/release:/Users/fawad.mehmood/DATA/Projects/PEC/Coding/build/app/kotlinToolingMetadata:/Users/fawad.mehmood/DATA/Projects/PEC/Coding/build/app/intermediates/compile_and_runtime_not_namespaced_r_class_jar/release/R.jar"
+      classOutputs="/Users/fawad.mehmood/DATA/Projects/pec/Coding/build/app/intermediates/javac/release/classes:/Users/fawad.mehmood/DATA/Projects/pec/Coding/build/app/tmp/kotlin-classes/release:/Users/fawad.mehmood/DATA/Projects/pec/Coding/build/app/kotlinToolingMetadata:/Users/fawad.mehmood/DATA/Projects/pec/Coding/build/app/intermediates/compile_and_runtime_not_namespaced_r_class_jar/release/R.jar"
       applicationId="com.example.pec"
-      generatedSourceFolders="/Users/fawad.mehmood/DATA/Projects/PEC/Coding/build/app/generated/ap_generated_sources/release/out:/Users/fawad.mehmood/DATA/Projects/PEC/Coding/build/app/generated/aidl_source_output_dir/release/out:/Users/fawad.mehmood/DATA/Projects/PEC/Coding/build/app/generated/source/buildConfig/release:/Users/fawad.mehmood/DATA/Projects/PEC/Coding/build/app/generated/renderscript_source_output_dir/release/out"
-      generatedResourceFolders="/Users/fawad.mehmood/DATA/Projects/PEC/Coding/build/app/generated/res/rs/release:/Users/fawad.mehmood/DATA/Projects/PEC/Coding/build/app/generated/res/resValues/release">
+      generatedSourceFolders="/Users/fawad.mehmood/DATA/Projects/pec/Coding/build/app/generated/ap_generated_sources/release/out:/Users/fawad.mehmood/DATA/Projects/pec/Coding/build/app/generated/aidl_source_output_dir/release/out:/Users/fawad.mehmood/DATA/Projects/pec/Coding/build/app/generated/source/buildConfig/release:/Users/fawad.mehmood/DATA/Projects/pec/Coding/build/app/generated/renderscript_source_output_dir/release/out"
+      generatedResourceFolders="/Users/fawad.mehmood/DATA/Projects/pec/Coding/build/app/generated/res/rs/release:/Users/fawad.mehmood/DATA/Projects/pec/Coding/build/app/generated/res/resValues/release">
   </mainArtifact>
 </variant>
