@@ -1,0 +1,9 @@
+http://localhost:3000/user/login
+
+####
+
+POST http://localhost:3000/user/login
+    {
+        "email": "user@example.com",
+        "pass": "helloworld"
+    }
