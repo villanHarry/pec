@@ -18,3 +18,5 @@ app.use("/user/", require("./routes/user"));
 app.listen(process.env.PORT, () => {
   console.log("Server Started Succesfully at Port " + process.env.PORT);
 });
+
+module.exports=db;

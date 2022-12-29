@@ -531,187 +531,217 @@ class _MeetingNodeState extends State<MeetingNode> {
     var width = MediaQuery.of(context).size.width;
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 10.0),
-      child: Container(
-        width: width,
-        decoration: BoxDecoration(
-            color: const Color(0xFFFFFFFF),
-            borderRadius: BorderRadius.circular(20),
-            border: Border.all(
-              color: const Color.fromARGB(255, 192, 192, 209),
-            )),
-        padding: const EdgeInsets.all(15.0),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Row(
+      child: Stack(
+        alignment: Alignment.center,
+        children: [
+          Container(
+            width: width,
+            decoration: BoxDecoration(
+                color: const Color(0xFFFFFFFF),
+                borderRadius: BorderRadius.circular(20),
+                border: Border.all(
+                  color: const Color.fromARGB(255, 192, 192, 209),
+                )),
+            padding: const EdgeInsets.all(15.0),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  "IT Committee Meeting",
-                  textAlign: TextAlign.start,
-                  style: TextStyle(
-                    fontSize: 22.5,
-                    fontFamily: bold,
-                    letterSpacing: 0.5,
-                    fontWeight: FontWeight.w800,
-                    color: const Color(0xFF091A31),
+                Row(
+                  children: [
+                    Text(
+                      "IT Committee Meeting",
+                      textAlign: TextAlign.start,
+                      style: TextStyle(
+                        fontSize: 22.5,
+                        fontFamily: bold,
+                        letterSpacing: 0.5,
+                        fontWeight: FontWeight.w800,
+                        color: const Color(0xFF091A31),
+                      ),
+                    ),
+                    const Spacer(),
+                    Visibility(
+                      visible: icon,
+                      child: InkWell(
+                        onTap: () => setState(() {
+                          icon = !icon;
+                        }),
+                        child: Icon(
+                          icon
+                              ? Icons.keyboard_arrow_up_sharp
+                              : Icons.keyboard_arrow_down_sharp,
+                          size: width * .07,
+                          color: const Color(0xFF9393A0),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                Visibility(
+                  visible: !icon,
+                  child: Row(
+                    children: [
+                      const Text(
+                        "Karachi",
+                        textAlign: TextAlign.start,
+                        style: TextStyle(
+                          fontSize: 14,
+                          letterSpacing: 0.5,
+                          color: const Color(0xFF091A31),
+                        ),
+                      ),
+                      const Spacer(),
+                      Text(
+                        "8:00 PM | ",
+                        textAlign: TextAlign.start,
+                        style: TextStyle(
+                          fontSize: 14,
+                          fontFamily: bold,
+                          letterSpacing: 0.5,
+                          color: const Color(0xFF091A31),
+                        ),
+                      ),
+                      const Text(
+                        "Duration: ${120} min",
+                        textAlign: TextAlign.start,
+                        style: TextStyle(
+                          fontSize: 14,
+                          letterSpacing: 0.5,
+                          color: Color(0xFF091A31),
+                        ),
+                      ),
+                      InkWell(
+                        onTap: () => setState(() {
+                          icon = !icon;
+                        }),
+                        child: Icon(
+                          icon
+                              ? Icons.keyboard_arrow_up_sharp
+                              : Icons.keyboard_arrow_down_sharp,
+                          size: width * .07,
+                          color: const Color(0xFF9393A0),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
-                const Spacer(),
                 Visibility(
                   visible: icon,
-                  child: InkWell(
-                    onTap: () => setState(() {
-                      icon = !icon;
-                    }),
-                    child: Icon(
-                      icon
-                          ? Icons.keyboard_arrow_up_sharp
-                          : Icons.keyboard_arrow_down_sharp,
-                      size: width * .07,
-                      color: const Color(0xFF9393A0),
-                    ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        "${120} min",
+                        textAlign: TextAlign.start,
+                        style: TextStyle(
+                          fontSize: 14,
+                          letterSpacing: 0.5,
+                          fontFamily: bold,
+                          color: const Color(0xFF9393A0),
+                        ),
+                      ),
+                      SizedBox(
+                        height: width * .06,
+                      ),
+                      const Text(
+                        "Location: Saddar Karachi",
+                        textAlign: TextAlign.start,
+                        style: TextStyle(
+                          fontSize: 16,
+                          letterSpacing: 0.5,
+                          fontWeight: FontWeight.bold,
+                          color: const Color(0xFF9393A0),
+                        ),
+                      ),
+                      Row(
+                        mainAxisSize: MainAxisSize.min,
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          const Text(
+                            "Meeting Duration: ",
+                            textAlign: TextAlign.start,
+                            style: TextStyle(
+                              fontSize: 16,
+                              letterSpacing: 0.5,
+                              fontWeight: FontWeight.bold,
+                              color: const Color(0xFF9393A0),
+                            ),
+                          ),
+                          Text(
+                            "8:00 PM to 10:00 PM",
+                            textAlign: TextAlign.start,
+                            style: TextStyle(
+                              fontSize: 15,
+                              fontFamily: bold,
+                              letterSpacing: 0.5,
+                              height: 1.5,
+                              fontWeight: FontWeight.bold,
+                              color: const Color(0xFF9393A0),
+                            ),
+                          ),
+                        ],
+                      ),
+                      Row(
+                        mainAxisSize: MainAxisSize.min,
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          const Text(
+                            "PARTICIPATION: ",
+                            textAlign: TextAlign.start,
+                            style: TextStyle(
+                              fontSize: 16,
+                              letterSpacing: 0.5,
+                              fontWeight: FontWeight.bold,
+                              color: const Color(0xFF9393A0),
+                            ),
+                          ),
+                          Text(
+                            "20",
+                            textAlign: TextAlign.start,
+                            style: TextStyle(
+                              fontSize: 15,
+                              fontFamily: bold,
+                              letterSpacing: 0.5,
+                              height: 1.5,
+                              fontWeight: FontWeight.bold,
+                              color: const Color(0xFF9393A0),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
                   ),
-                ),
+                )
               ],
             ),
-            Visibility(
-              visible: !icon,
-              child: Row(
-                children: [
-                  const Text(
-                    "Karachi",
-                    textAlign: TextAlign.start,
-                    style: TextStyle(
-                      fontSize: 14,
-                      letterSpacing: 0.5,
-                      color: const Color(0xFF091A31),
-                    ),
+          ),
+          Positioned(
+            top: width * -0.02,
+            right: -5,
+            child: Stack(
+              alignment: Alignment.center,
+              children: [
+                Container(
+                  width: width * 0.09,
+                  height: width * 0.09,
+                  decoration: const BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: Color(0xFFFCFBFF),
                   ),
-                  const Spacer(),
-                  Text(
-                    "8:00 PM | ",
-                    textAlign: TextAlign.start,
-                    style: TextStyle(
-                      fontSize: 14,
-                      fontFamily: bold,
-                      letterSpacing: 0.5,
-                      color: const Color(0xFF091A31),
-                    ),
+                ),
+                SizedBox(
+                  width: width * 0.05,
+                  height: width * 0.05,
+                  child: const Icon(
+                    Icons.check_circle,
+                    color: Color.fromARGB(255, 0, 64, 255),
                   ),
-                  const Text(
-                    "Duration: ${120} min",
-                    textAlign: TextAlign.start,
-                    style: TextStyle(
-                      fontSize: 14,
-                      letterSpacing: 0.5,
-                      color: Color(0xFF091A31),
-                    ),
-                  ),
-                  InkWell(
-                    onTap: () => setState(() {
-                      icon = !icon;
-                    }),
-                    child: Icon(
-                      icon
-                          ? Icons.keyboard_arrow_up_sharp
-                          : Icons.keyboard_arrow_down_sharp,
-                      size: width * .07,
-                      color: const Color(0xFF9393A0),
-                    ),
-                  ),
-                ],
-              ),
+                )
+              ],
             ),
-            Visibility(
-              visible: icon,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    "${120} min",
-                    textAlign: TextAlign.start,
-                    style: TextStyle(
-                      fontSize: 14,
-                      letterSpacing: 0.5,
-                      fontFamily: bold,
-                      color: const Color(0xFF9393A0),
-                    ),
-                  ),
-                  SizedBox(
-                    height: width * .06,
-                  ),
-                  const Text(
-                    "Location: Saddar Karachi",
-                    textAlign: TextAlign.start,
-                    style: TextStyle(
-                      fontSize: 16,
-                      letterSpacing: 0.5,
-                      fontWeight: FontWeight.bold,
-                      color: const Color(0xFF9393A0),
-                    ),
-                  ),
-                  Row(
-                    mainAxisSize: MainAxisSize.min,
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      const Text(
-                        "Meeting Duration: ",
-                        textAlign: TextAlign.start,
-                        style: TextStyle(
-                          fontSize: 16,
-                          letterSpacing: 0.5,
-                          fontWeight: FontWeight.bold,
-                          color: const Color(0xFF9393A0),
-                        ),
-                      ),
-                      Text(
-                        "8:00 PM to 10:00 PM",
-                        textAlign: TextAlign.start,
-                        style: TextStyle(
-                          fontSize: 15,
-                          fontFamily: bold,
-                          letterSpacing: 0.5,
-                          height: 1.5,
-                          fontWeight: FontWeight.bold,
-                          color: const Color(0xFF9393A0),
-                        ),
-                      ),
-                    ],
-                  ),
-                  Row(
-                    mainAxisSize: MainAxisSize.min,
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      const Text(
-                        "PARTICIPATION: ",
-                        textAlign: TextAlign.start,
-                        style: TextStyle(
-                          fontSize: 16,
-                          letterSpacing: 0.5,
-                          fontWeight: FontWeight.bold,
-                          color: const Color(0xFF9393A0),
-                        ),
-                      ),
-                      Text(
-                        "20",
-                        textAlign: TextAlign.start,
-                        style: TextStyle(
-                          fontSize: 15,
-                          fontFamily: bold,
-                          letterSpacing: 0.5,
-                          height: 1.5,
-                          fontWeight: FontWeight.bold,
-                          color: const Color(0xFF9393A0),
-                        ),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-            )
-          ],
-        ),
+          )
+        ],
       ),
     );
   }

@@ -29,6 +29,6 @@ export '../Services/InternetCheck.dart';
 //Local Database
 export 'package:hive/hive.dart';
 export 'package:hive_flutter/hive_flutter.dart';
-export '../Services/Models/User.dart';
+export '../Services/Models/LocalDBModel/User.dart';
 export 'package:pec/Constants/Database.dart';
-export '../Services/Models/Boxes.dart';
+export '../Services/Models/LocalDBModel/Boxes.dart';

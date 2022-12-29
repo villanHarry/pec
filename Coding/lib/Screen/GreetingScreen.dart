@@ -63,9 +63,19 @@ class _GreetingScreenState extends State<GreetingScreen>
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Image.asset(
-                Assets.diamondAvatar,
-                scale: 4.0,
+              Stack(
+                alignment: Alignment.center,
+                children: [
+                  Image.asset(
+                    Assets.diamond,
+                    color: const Color(0xFFEEF0FD),
+                    scale: 8.0,
+                  ),
+                  Image.asset(
+                    Assets.userIcon,
+                    scale: 18.0,
+                  ),
+                ],
               ),
               SizedBox(
                 height: height > 840 ? width * 0.06 : width * 0.06,

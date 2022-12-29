@@ -10,6 +10,8 @@ Color white = Colors.white;
 Color blue = const Color.fromRGBO(0, 68, 128, 1.0);
 Color blue2 = const Color.fromRGBO(31, 147, 244, 1.0);
 
+String url = "http://localhost:3000";
+
 /*PreferredSize(
         preferredSize: Size(width, height > 840 ? width * 0.13 : width * 0.16),
         child: Container(

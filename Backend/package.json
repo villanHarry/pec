@@ -10,5 +10,11 @@
     "body-parser": "^1.20.1",
     "dotenv": "^16.0.3",
     "mongoose": "^6.8.1"
-  }
+  },
+  "name": "pec_backend",
+  "version": "1.0.0",
+  "main": "server.js",
+  "author": "VillanHarry",
+  "license": "MIT",
+  "description": "Sample NodeJS Project with Expres FrameWork and Running in Docker Container"
 }

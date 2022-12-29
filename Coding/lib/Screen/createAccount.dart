@@ -290,7 +290,7 @@ class _createAccountState extends State<createAccount>
                               setState(() {
                                 loading = false;
                               });
-                              //Screen.replace(context, const GreetingScreen());
+                              Screen.replace(context, const GreetingScreen());
                             } else {
                               setState(() {
                                 loading = false;

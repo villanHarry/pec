@@ -4,4 +4,6 @@ class Assets {
   static String diamondAvatar = "assets/Icons/diamondShapeAvatar.png";
   static String profilePic = "assets/Images/dp.jpeg";
   static String animatedCamera = "assets/lottie/cameraIcon.json";
+  static String diamond = "assets/Icons/diamond.png";
+  static String userIcon = "assets/Icons/user.png";
 }
