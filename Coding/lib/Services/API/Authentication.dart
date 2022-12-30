@@ -94,15 +94,15 @@ class AuthAPI {
             var AddUser = User()
               ..email = result.user.email
               ..fullname = result.user.fullname
-              ..image = result.user.image;
+              ..image = result.user.image
+              ..userType = result.user.userType;
 
             var box = Boxes.getUser();
             box.add(AddUser);
 
             return true;
           } else {
-            Screen.showSnackBar(
-                context: context, content: "User Doesn't Exist");
+            Screen.showSnackBar(context: context, content: result.message);
             return false;
           }
         } else {
@@ -138,15 +138,15 @@ class AuthAPI {
             var AddUser = User()
               ..email = result.user.email
               ..fullname = result.user.fullname
-              ..image = result.user.image;
+              ..image = result.user.image
+              ..userType = result.user.userType;
 
             var box = Boxes.getUser();
             box.add(AddUser);
 
             return true;
           } else {
-            Screen.showSnackBar(
-                context: context, content: "SignUp Unsuccesful");
+            Screen.showSnackBar(context: context, content: result.message);
             return false;
           }
         } else {

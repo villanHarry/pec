@@ -9,4 +9,6 @@ class User extends HiveObject {
   late String fullname;
   @HiveField(2)
   late String image;
+  @HiveField(3)
+  late String userType;
 }

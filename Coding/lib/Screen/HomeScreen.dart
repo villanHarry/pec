@@ -110,7 +110,6 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
     return Scaffold(
       backgroundColor: const Color(0xFFFCFBFF),
       appBar: appbar(),
-      bottomNavigationBar: bottomBar(width),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 18.5),
         child: Column(
@@ -215,49 +214,6 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
               },
             ))
           ],
-        ),
-      ),
-    );
-  }
-
-  SlideTransition bottomBar(double width) {
-    var height = MediaQuery.of(context).size.height;
-    return SlideTransition(
-      position: _offsetAnimation2,
-      child: Container(
-        height: height > 840 ? width * 0.25 : width * 0.2,
-        decoration: const BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(35), topRight: Radius.circular(35)),
-        ),
-        child: Padding(
-          padding: const EdgeInsets.all(11.0),
-          child: Column(
-            children: [
-              const Spacer(),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  navIcon(
-                    icon: Icons.home_outlined,
-                    selected: true,
-                  ),
-                  navIcon(
-                    icon: Icons.missed_video_call_outlined,
-                  ),
-                  navIcon(
-                    icon: Icons.image_outlined,
-                  ),
-                  navIcon(
-                    icon: Icons.account_circle_outlined,
-                  )
-                ],
-              ),
-              const Spacer(),
-            ],
-          ),
         ),
       ),
     );

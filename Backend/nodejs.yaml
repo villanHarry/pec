@@ -1,21 +1,22 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
- name: sample-nodejs
+ name: pec
  labels:
-   app: sample-nodejs
+   app: pec
 spec:
+ replicas: 1
  selector:
   matchLabels:
-   app: sample-nodejs
+   app: pec
  template:
   metadata:
    labels:
-    app: sample-nodejs
+    app: pec
   spec:
    containers:
-   - image: ip_address_of_the_machine:5000/nodejs-api-image:latest
-     name: nodejs-api
+   - name: nodejs-api
+     image: muhammadharris/pec:latest
      imagePullPolicy: Always
      ports:
        - containerPort: 3000
@@ -23,14 +24,13 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-    name: sample-nodejs-svc
+    name: pec-svc
 spec:
-    ports:
-    - name: “sample-nodejs”
-      targetPort: 3000
-      port: 3000
-      nodePort: 30253
-      protocol: TCP
     selector:
-       app: sample-nodejs
-    type: NodePort
+       app: pec
+    type: LoadBalancer
+    ports:
+    - targetPort: 3000
+      port: 3000
+      nodePort: 31110
+      protocol: TCP

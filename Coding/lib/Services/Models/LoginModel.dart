@@ -30,25 +30,27 @@ class LoginModel {
 }
 
 class UserModel {
-  UserModel({
-    required this.email,
-    required this.fullname,
-    required this.image,
-  });
+  UserModel(
+      {required this.email,
+      required this.fullname,
+      required this.image,
+      required this.userType});
 
   String email;
   String fullname;
   String image;
+  String userType;
 
   factory UserModel.fromJson(Map<String, dynamic> json) => UserModel(
-        email: json["Email"],
-        fullname: json["Fullname"],
-        image: json["Image"],
-      );
+      email: json["Email"],
+      fullname: json["Fullname"],
+      image: json["Image"],
+      userType: json["UserType"]);
 
   Map<String, dynamic> toJson() => {
         "Email": email,
         "Fullname": fullname,
         "Image": image,
+        "UserType": userType
       };
 }

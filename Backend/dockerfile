@@ -1,19 +1,13 @@
-##DockerFile
-#Pulling node image from dockerhub
 FROM node:alpine
-# Create app directory
+
 WORKDIR /usr/src/app
-# Copy code from root repo to the working directory
+
+COPY ["package.json", "package-lock.json*", "./"]
+
+RUN npm install
+
 COPY . .
 
-# Tell that this image is going to Open a Port 
 EXPOSE 3000
 
-#Run node commands to build and serve the application
-RUN \
-  npm install && \
-  npm install gulp -g && \
-  npm install swagger -g && \
-  gulp clean && \
-  gulp tsc
-CMD [ “npm”, “server.js” ]
+CMD [ "npm" , "start" ]
