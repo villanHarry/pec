@@ -10,7 +10,10 @@ dependencies:
   flutter:
     sdk: flutter
 
+  agora_rtc_engine: ^6.1.0
+  permission_handler:
   cupertino_icons: ^1.0.2
+  flutter_advanced_drawer: ^1.3.2
   shimmer: ^2.0.0
   lottie: ^1.4.2
   mongo_dart: ^0.8.2

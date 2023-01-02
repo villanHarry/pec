@@ -1,4 +1,0 @@
-#Wed Dec 21 10:08:07 PKT 2022
-base.0=/Users/fawad.mehmood/DATA/Projects/pec/Coding/build/app/intermediates/dex/release/minifyReleaseWithR8/classes.dex
-renamed.0=classes.dex
-path.0=classes.dex
