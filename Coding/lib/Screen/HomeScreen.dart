@@ -55,6 +55,10 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
   bool past = true;
   bool showCalender = false;
 
+  late Timer _timer;
+  int _start = 0;
+  bool backpress = false;
+
   @override
   void initState() {
     SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
@@ -97,6 +101,25 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
     }
   }
 
+  void startTimer() {
+    const oneSec = Duration(seconds: 1);
+    _timer = Timer.periodic(
+      oneSec,
+      (Timer timer) {
+        if (_start == 0) {
+          setState(() {
+            backpress = false;
+            timer.cancel();
+          });
+        } else {
+          setState(() {
+            _start--;
+          });
+        }
+      },
+    );
+  }
+
   @override
   void dispose() {
     _controller.dispose();
@@ -115,112 +138,137 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
       child: Scaffold(
         backgroundColor: const Color(0xFFFCFBFF),
         appBar: appbar(),
-        body: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 18.5),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                past ? "Past Meetings" : "Upcoming Meetings",
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontSize: 15,
-                  letterSpacing: 0.5,
-                  fontFamily: bold,
-                  fontWeight: FontWeight.w900,
-                  color: const Color(0xFF9393A0),
+        /*floatingActionButton: CurrentUser.userType == "master"
+            ? FloatingActionButton(
+                onPressed: () {
+                  Screen.push(context, const MeetingFormScreen());
+                },
+                backgroundColor: const Color.fromARGB(255, 0, 64, 255),
+                child: Icon(Icons.add, color: white),
+              )
+            : null,*/
+        body: WillPopScope(
+          onWillPop: () async {
+            if (!backpress) {
+              Screen.showSnackBar(
+                  context: context, content: "Press Again to exit");
+              setState(() {
+                backpress = true;
+                _start = 1;
+              });
+              startTimer();
+            } else {
+              return true;
+            }
+            return false;
+          },
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 18.5),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  past ? "Past Meetings" : "Upcoming Meetings",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: 15,
+                    letterSpacing: 0.5,
+                    fontFamily: bold,
+                    fontWeight: FontWeight.w900,
+                    color: const Color(0xFF9393A0),
+                  ),
                 ),
-              ),
-              SizedBox(
-                height: width * .08,
-              ),
-              SlideTransition(
-                  position: _offsetAnimation3,
-                  child: AnimatedOpacity(
-                      opacity: showCalender ? 1.0 : 0.0,
-                      duration: const Duration(milliseconds: 300),
-                      child: Visibility(
-                        visible: showCalender,
-                        child: Padding(
-                          padding: EdgeInsets.only(bottom: width * .08),
-                          child: TableCalendar(
-                            focusedDay: currentDate,
-                            currentDay: currentDate,
-                            firstDay:
-                                currentDate.subtract(Duration(days: firstDay)),
-                            lastDay: currentDate.add(Duration(days: lastDay)),
-                            calendarFormat: CalendarFormat.week,
-                            startingDayOfWeek: StartingDayOfWeek.monday,
-                            headerVisible: false,
-                            rowHeight: 60,
-                            daysOfWeekHeight: 25,
-                            onDaySelected: (select, notSelected) {
-                              setState(() {
-                                currentDate = select;
-                              });
-                              DateSetting();
-                            },
-                            daysOfWeekStyle: DaysOfWeekStyle(
-                              dowTextFormatter: (date, locale) =>
-                                  DateFormat.E(locale)
-                                      .format(date)
-                                      .toUpperCase(),
-                            ),
-                            calendarStyle: CalendarStyle(
-                              todayDecoration: const BoxDecoration(
-                                  color: Color(0xFF546DF6),
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(10))),
-                              defaultDecoration: BoxDecoration(
-                                  border: Border.all(color: Colors.grey),
-                                  borderRadius: const BorderRadius.all(
-                                      Radius.circular(10))),
-                              weekendDecoration: BoxDecoration(
-                                  border: Border.all(color: Colors.grey),
-                                  borderRadius: const BorderRadius.all(
-                                      Radius.circular(10))),
+                SizedBox(
+                  height: width * .08,
+                ),
+                SlideTransition(
+                    position: _offsetAnimation3,
+                    child: AnimatedOpacity(
+                        opacity: showCalender ? 1.0 : 0.0,
+                        duration: const Duration(milliseconds: 300),
+                        child: Visibility(
+                          visible: showCalender,
+                          child: Padding(
+                            padding: EdgeInsets.only(bottom: width * .08),
+                            child: TableCalendar(
+                              focusedDay: currentDate,
+                              currentDay: currentDate,
+                              firstDay: currentDate
+                                  .subtract(Duration(days: firstDay)),
+                              lastDay: currentDate.add(Duration(days: lastDay)),
+                              calendarFormat: CalendarFormat.week,
+                              startingDayOfWeek: StartingDayOfWeek.monday,
+                              headerVisible: false,
+                              rowHeight: 60,
+                              daysOfWeekHeight: 25,
+                              onDaySelected: (select, notSelected) {
+                                setState(() {
+                                  currentDate = select;
+                                });
+                                DateSetting();
+                              },
+                              daysOfWeekStyle: DaysOfWeekStyle(
+                                dowTextFormatter: (date, locale) =>
+                                    DateFormat.E(locale)
+                                        .format(date)
+                                        .toUpperCase(),
+                              ),
+                              calendarStyle: CalendarStyle(
+                                todayDecoration: const BoxDecoration(
+                                    color: Color(0xFF546DF6),
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(10))),
+                                defaultDecoration: BoxDecoration(
+                                    border: Border.all(color: Colors.grey),
+                                    borderRadius: const BorderRadius.all(
+                                        Radius.circular(10))),
+                                weekendDecoration: BoxDecoration(
+                                    border: Border.all(color: Colors.grey),
+                                    borderRadius: const BorderRadius.all(
+                                        Radius.circular(10))),
+                              ),
                             ),
                           ),
-                        ),
-                      ))),
-              Row(
-                children: [
-                  Text(
-                    "Meetings",
-                    textAlign: TextAlign.start,
-                    style: TextStyle(
-                      fontSize: 15,
-                      letterSpacing: 0.5,
-                      fontFamily: bold,
-                      fontWeight: FontWeight.w900,
-                      color: const Color(0xFF9393A0),
+                        ))),
+                Row(
+                  children: [
+                    Text(
+                      "Meetings",
+                      textAlign: TextAlign.start,
+                      style: TextStyle(
+                        fontSize: 15,
+                        letterSpacing: 0.5,
+                        fontFamily: bold,
+                        fontWeight: FontWeight.w900,
+                        color: const Color(0xFF9393A0),
+                      ),
                     ),
-                  ),
-                  const Spacer(),
-                  Text(
-                    "See All Meetings",
-                    textAlign: TextAlign.start,
-                    style: TextStyle(
-                      fontSize: 15,
-                      letterSpacing: 0.5,
-                      fontFamily: reg,
-                      color: const Color.fromARGB(255, 0, 64, 255),
-                      decoration: TextDecoration.underline,
+                    const Spacer(),
+                    Text(
+                      "See All Meetings",
+                      textAlign: TextAlign.start,
+                      style: TextStyle(
+                        fontSize: 15,
+                        letterSpacing: 0.5,
+                        fontFamily: reg,
+                        color: const Color.fromARGB(255, 0, 64, 255),
+                        decoration: TextDecoration.underline,
+                      ),
                     ),
-                  ),
-                ],
-              ),
-              SizedBox(
-                height: width * .06,
-              ),
-              Expanded(
-                  child: ListView.builder(
-                itemCount: 3,
-                itemBuilder: (context, index) {
-                  return const MeetingNode();
-                },
-              ))
-            ],
+                  ],
+                ),
+                SizedBox(
+                  height: width * .06,
+                ),
+                Expanded(
+                    child: ListView.builder(
+                  itemCount: 3,
+                  itemBuilder: (context, index) {
+                    return const MeetingNode();
+                  },
+                ))
+              ],
+            ),
           ),
         ),
       ),

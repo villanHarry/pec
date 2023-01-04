@@ -116,7 +116,8 @@ class CustomDrawer extends StatelessWidget {
             thickness: 2.5,
           ),
         ),
-        //Settings Button
+
+        //Logout Button
         navigaitonTile(
           onpress: () {
             final box2 = Boxes.getUser();
@@ -143,9 +144,9 @@ class CustomDrawer extends StatelessWidget {
 class navigaitonTile extends StatelessWidget {
   const navigaitonTile(
       {Key? key,
-      required this.icon,
       required this.text,
       required this.onpress,
+      this.icon = const SizedBox(width: 0, height: 0),
       this.last = false})
       : super(key: key);
 

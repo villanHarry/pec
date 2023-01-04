@@ -1,11 +1,17 @@
-const express = require("express");
-const { default: mongoose } = require("mongoose");
-const router = express.Router();
+const router = require("express").Router();
 const userSchema = require("../models/userModel");
 const db = require('../server');
-var MongoClient = require('mongodb').MongoClient;
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
+
+router.get('/', async (req,res)=>{
+  try{
+    const data = await userSchema.find();
+    res.json(data);
+  } catch (c){
+    res.send(c);
+  }
+});
 
 router.get('/login', async (req, res) => {
   try {

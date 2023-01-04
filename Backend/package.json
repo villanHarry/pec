@@ -1,17 +1,22 @@
 {
   "name": "pec_backend",
   "description": "pec backend",
-  "version": "0.0.1",
-  "private":true,
+  "engines": {
+    "node": "v18.12.1"
+  },
+  "version": "1.0.0",
+  "author": "villanHarry",
+  "license": "MIT",
   "scripts": {
-    "start": "nodemon server.js",
-    "test": "./node_modules/ .bin/mocha ./test/test.js"
+    "start": "node server.js",
+    "devStart":"nodemon server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "devDependencies": {
-    "express": "^4.18.2",
     "nodemon": "^2.0.20"
   },
   "dependencies": {
+    "express": "^4.18.2",
     "bcrypt": "^5.1.0",
     "body-parser": "^1.20.1",
     "dotenv": "^16.0.3",

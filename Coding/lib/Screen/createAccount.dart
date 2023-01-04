@@ -141,244 +141,251 @@ class _createAccountState extends State<createAccount>
     var height = MediaQuery.of(context).size.height;
     var width = MediaQuery.of(context).size.width;
     return Scaffold(
-        backgroundColor: Color(0xFFFCFBFF),
-        body: SingleChildScrollView(
-          child: SizedBox(
-            height: height,
-            width: width,
-            child: Stack(
-              alignment: Alignment.center,
-              children: [
-                Column(
-                  children: [
-                    Spacer(
-                      flex: height > 840 ? 3 : 8,
-                    ),
-                    Text(
-                      "SIGNUP",
-                      style: TextStyle(
-                          color: const Color(0xFF091A31),
-                          fontFamily: bold,
-                          fontSize: 40,
-                          letterSpacing: 0.5,
-                          fontWeight: FontWeight.w900),
-                    ),
-                    Text("Welcome to PEC Schedule Daily Meetings",
-                        textAlign: TextAlign.center,
+        backgroundColor: const Color(0xFFFCFBFF),
+        body: WillPopScope(
+          onWillPop: () async {
+            Screen.replace(context, const loginScreen());
+            return false;
+          },
+          child: SingleChildScrollView(
+            child: SizedBox(
+              height: height,
+              width: width,
+              child: Stack(
+                alignment: Alignment.center,
+                children: [
+                  Column(
+                    children: [
+                      Spacer(
+                        flex: height > 840 ? 3 : 8,
+                      ),
+                      Text(
+                        "SIGNUP",
                         style: TextStyle(
-                            color: const Color(0xFF818182),
-                            fontFamily: reg,
-                            fontSize: 13,
-                            height: 1,
-                            fontWeight: FontWeight.w600)),
-                    SizedBox(
-                      height: height > 840 ? width * 0.06 : width * 0.06,
+                            color: const Color(0xFF091A31),
+                            fontFamily: bold,
+                            fontSize: 40,
+                            letterSpacing: 0.5,
+                            fontWeight: FontWeight.w900),
+                      ),
+                      Text("Welcome to PEC Schedule Daily Meetings",
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                              color: const Color(0xFF818182),
+                              fontFamily: reg,
+                              fontSize: 13,
+                              height: 1,
+                              fontWeight: FontWeight.w600)),
+                      SizedBox(
+                        height: height > 840 ? width * 0.06 : width * 0.06,
+                      ),
+                      Stack(
+                        alignment: Alignment.center,
+                        children: [
+                          Container(
+                            width: width * 0.35,
+                            height: width * 0.35,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(100),
+                              gradient: const LinearGradient(
+                                begin: Alignment.topCenter,
+                                end: Alignment.bottomCenter,
+                                colors: [
+                                  Color(0xFF6587F2),
+                                  Color(0xFF4C48EE),
+                                ],
+                              ),
+                            ),
+                          ),
+                          InkWell(
+                            onTap: () {
+                              if (file.path.isNotEmpty) {
+                                addImage();
+                              }
+                            },
+                            child: Container(
+                              width: width * 0.325,
+                              height: width * 0.325,
+                              decoration: BoxDecoration(
+                                  color: const Color(0xFFFCFBFF),
+                                  image: file.path.isNotEmpty
+                                      ? DecorationImage(
+                                          image: FileImage(file),
+                                          fit: BoxFit.cover)
+                                      : null,
+                                  borderRadius: BorderRadius.circular(100)),
+                            ),
+                          ),
+                        ],
+                      ),
+                      SizedBox(
+                        height: height > 840 ? width * 0.06 : width * 0.06,
+                      ),
+                      SlideTransition(
+                          position: _offsetAnimation, child: fullname),
+                      SizedBox(
+                        height: height > 840 ? width * 0.06 : width * 0.06,
+                      ),
+                      SlideTransition(position: _offsetAnimation, child: email),
+                      SizedBox(
+                        height: height > 840 ? width * 0.06 : width * 0.06,
+                      ),
+                      SlideTransition(position: _offsetAnimation, child: pass),
+                      SizedBox(
+                        height: height > 840 ? width * 0.06 : width * 0.06,
+                      ),
+                      AnimatedOpacity(
+                        opacity: visible ? 1.0 : 0.0,
+                        duration: const Duration(milliseconds: 900),
+                        child: Center(
+                            child: InkWell(
+                          onTap: () {
+                            setState(() {
+                              icon = !icon;
+                            });
+                          },
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Icon(
+                                icon
+                                    ? Icons.check_box_outlined
+                                    : Icons.check_box_outline_blank,
+                                color: const Color(0xFF4C48EE),
+                              ),
+                              SizedBox(
+                                width: width * 0.02,
+                              ),
+                              const Text(
+                                "KEEP SAVE FOR THE NEXT TIME",
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                  fontSize: 15,
+                                  color: Color.fromARGB(255, 50, 50, 50),
+                                  fontWeight: FontWeight.w900,
+                                ),
+                              ),
+                            ],
+                          ),
+                        )),
+                      ),
+                      SizedBox(
+                        height: height > 840 ? width * 0.06 : width * 0.06,
+                      ),
+                      SlideTransition(
+                        position: _offsetAnimation,
+                        child: Button(
+                          text: "SIGN UP",
+                          press: () async {
+                            if (email.myController.text.isNotEmpty &&
+                                pass.myController.text.isNotEmpty &&
+                                fullname.myController.text.isNotEmpty &&
+                                file.path.isNotEmpty) {
+                              setState(() {
+                                loading = true;
+                              });
+                              if (await AuthAPI.signUp(
+                                  context,
+                                  email.myController.text.toString(),
+                                  pass.myController.text.toString(),
+                                  fullname.myController.text.toString(),
+                                  await ImageUpload.generate(context, file))) {
+                                setState(() {
+                                  loading = false;
+                                });
+                                Screen.replace(context, const GreetingScreen());
+                              } else {
+                                setState(() {
+                                  loading = false;
+                                });
+                              }
+                            } else {
+                              Screen.showSnackBar(
+                                  context: context, content: "Fill all Fields");
+                            }
+
+                            //Screen.replace(context, const GreetingScreen());
+                          },
+                          bolds: true,
+                          fontSize: 16,
+                        ),
+                      ),
+                      SizedBox(
+                        height: height > 840 ? width * 0.06 : width * 0.06,
+                      ),
+                      SlideTransition(
+                        position: _offsetAnimation,
+                        child: Button(
+                          isUppercase: false,
+                          text: "Connect with Facebook",
+                          press: () {
+                            Screen.replace(context, const GreetingScreen());
+                          },
+                          bolds: true,
+                          fontSize: 16,
+                        ),
+                      ),
+                      SlideTransition(
+                        position: _offsetAnimation,
+                        child: SignUpButton(() {
+                          Screen.replace(context, const loginScreen());
+                        }),
+                      ),
+                      const Spacer(),
+                    ],
+                  ),
+                  Visibility(
+                    visible: file.path.isEmpty,
+                    child: Positioned(
+                      top: height > 840 ? width * 0.38 : width * 0.28,
+                      child: InkWell(
+                        onTap: () {
+                          addImage();
+                        },
+                        child: Lottie.asset(
+                          Assets.animatedCamera,
+                          height: width * 0.5,
+                          fit: BoxFit.cover,
+                          frameRate: FrameRate(60),
+                          controller: _controller3,
+                        ),
+                      ),
                     ),
-                    Stack(
+                  ),
+                  Visibility(
+                    visible: loading,
+                    child: Stack(
                       alignment: Alignment.center,
                       children: [
                         Container(
-                          width: width * 0.35,
-                          height: width * 0.35,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(100),
-                            gradient: const LinearGradient(
-                              begin: Alignment.topCenter,
-                              end: Alignment.bottomCenter,
-                              colors: [
-                                Color(0xFF6587F2),
-                                Color(0xFF4C48EE),
-                              ],
-                            ),
+                          width: width,
+                          height: height,
+                          color: Color.fromARGB(128, 87, 100, 238),
+                        ),
+                        Shimmer.fromColors(
+                          baseColor: const Color(0xFF5763EE),
+                          direction: ShimmerDirection.ttb,
+                          highlightColor:
+                              const Color.fromARGB(128, 87, 100, 238),
+                          enabled: loading,
+                          child: Image.asset(
+                            Assets.logo,
+                            scale: 1.5,
+                            color: white,
                           ),
                         ),
-                        InkWell(
-                          onTap: () {
-                            if (file.path.isNotEmpty) {
-                              addImage();
-                            }
-                          },
-                          child: Container(
-                            width: width * 0.325,
-                            height: width * 0.325,
-                            decoration: BoxDecoration(
-                                color: const Color(0xFFFCFBFF),
-                                image: file.path.isNotEmpty
-                                    ? DecorationImage(
-                                        image: FileImage(file),
-                                        fit: BoxFit.cover)
-                                    : null,
-                                borderRadius: BorderRadius.circular(100)),
-                          ),
-                        ),
-                      ],
-                    ),
-                    SizedBox(
-                      height: height > 840 ? width * 0.06 : width * 0.06,
-                    ),
-                    SlideTransition(
-                        position: _offsetAnimation, child: fullname),
-                    SizedBox(
-                      height: height > 840 ? width * 0.06 : width * 0.06,
-                    ),
-                    SlideTransition(position: _offsetAnimation, child: email),
-                    SizedBox(
-                      height: height > 840 ? width * 0.06 : width * 0.06,
-                    ),
-                    SlideTransition(position: _offsetAnimation, child: pass),
-                    SizedBox(
-                      height: height > 840 ? width * 0.06 : width * 0.06,
-                    ),
-                    AnimatedOpacity(
-                      opacity: visible ? 1.0 : 0.0,
-                      duration: const Duration(milliseconds: 900),
-                      child: Center(
-                          child: InkWell(
-                        onTap: () {
-                          setState(() {
-                            icon = !icon;
-                          });
-                        },
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            Icon(
-                              icon
-                                  ? Icons.check_box_outlined
-                                  : Icons.check_box_outline_blank,
-                              color: const Color(0xFF4C48EE),
-                            ),
-                            SizedBox(
-                              width: width * 0.02,
-                            ),
-                            const Text(
-                              "KEEP SAVE FOR THE NEXT TIME",
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                fontSize: 15,
-                                color: Color.fromARGB(255, 50, 50, 50),
-                                fontWeight: FontWeight.w900,
-                              ),
-                            ),
-                          ],
-                        ),
-                      )),
-                    ),
-                    SizedBox(
-                      height: height > 840 ? width * 0.06 : width * 0.06,
-                    ),
-                    SlideTransition(
-                      position: _offsetAnimation,
-                      child: Button(
-                        text: "SIGN UP",
-                        press: () async {
-                          if (email.myController.text.isNotEmpty &&
-                              pass.myController.text.isNotEmpty &&
-                              fullname.myController.text.isNotEmpty &&
-                              file.path.isNotEmpty) {
-                            setState(() {
-                              loading = true;
-                            });
-                            if (await AuthAPI.signUp(
-                                context,
-                                email.myController.text.toString(),
-                                pass.myController.text.toString(),
-                                fullname.myController.text.toString(),
-                                await ImageUpload.generate(context, file))) {
-                              setState(() {
-                                loading = false;
-                              });
-                              Screen.replace(context, const GreetingScreen());
-                            } else {
-                              setState(() {
-                                loading = false;
-                              });
-                            }
-                          } else {
-                            Screen.showSnackBar(
-                                context: context, content: "Fill all Fields");
-                          }
-
-                          //Screen.replace(context, const GreetingScreen());
-                        },
-                        bolds: true,
-                        fontSize: 16,
-                      ),
-                    ),
-                    SizedBox(
-                      height: height > 840 ? width * 0.06 : width * 0.06,
-                    ),
-                    SlideTransition(
-                      position: _offsetAnimation,
-                      child: Button(
-                        isUppercase: false,
-                        text: "Connect with Facebook",
-                        press: () {
-                          Screen.replace(context, const GreetingScreen());
-                        },
-                        bolds: true,
-                        fontSize: 16,
-                      ),
-                    ),
-                    SlideTransition(
-                      position: _offsetAnimation,
-                      child: SignUpButton(() {
-                        Screen.replace(context, const loginScreen());
-                      }),
-                    ),
-                    const Spacer(),
-                  ],
-                ),
-                Visibility(
-                  visible: file.path.isEmpty,
-                  child: Positioned(
-                    top: height > 840 ? width * 0.38 : width * 0.28,
-                    child: InkWell(
-                      onTap: () {
-                        addImage();
-                      },
-                      child: Lottie.asset(
-                        Assets.animatedCamera,
-                        height: width * 0.5,
-                        fit: BoxFit.cover,
-                        frameRate: FrameRate(60),
-                        controller: _controller3,
-                      ),
-                    ),
-                  ),
-                ),
-                Visibility(
-                  visible: loading,
-                  child: Stack(
-                    alignment: Alignment.center,
-                    children: [
-                      Container(
-                        width: width,
-                        height: height,
-                        color: Color.fromARGB(128, 87, 100, 238),
-                      ),
-                      Shimmer.fromColors(
-                        baseColor: const Color(0xFF5763EE),
-                        direction: ShimmerDirection.ttb,
-                        highlightColor: const Color.fromARGB(128, 87, 100, 238),
-                        enabled: loading,
-                        child: Image.asset(
+                        /*Image.asset(
                           Assets.logo,
                           scale: 1.5,
-                          color: white,
-                        ),
-                      ),
-                      /*Image.asset(
-                        Assets.logo,
-                        scale: 1.5,
-                        color: const Color.fromARGB(180, 255, 255, 255),
-                      ),*/
-                    ],
-                  ),
-                )
-              ],
+                          color: const Color.fromARGB(180, 255, 255, 255),
+                        ),*/
+                      ],
+                    ),
+                  )
+                ],
+              ),
             ),
           ),
         ));

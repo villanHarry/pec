@@ -78,144 +78,151 @@ class _loginScreenState extends State<loginScreen>
     var height = MediaQuery.of(context).size.height;
     var width = MediaQuery.of(context).size.width;
     return Scaffold(
-        backgroundColor: Color(0xFFFCFBFF),
-        body: SingleChildScrollView(
-          child: SizedBox(
-            height: height,
-            width: width,
-            child: Stack(
-              alignment: Alignment.center,
-              children: [
-                Column(
-                  children: [
-                    const Spacer(),
-                    Text(
-                      "LOGIN",
-                      style: TextStyle(
-                          color: const Color(0xFF091A31),
-                          fontFamily: bold,
-                          fontSize: 40,
-                          letterSpacing: 0.5,
-                          fontWeight: FontWeight.w900),
-                    ),
-                    Text("Welcome to PEC Schedule Daily Meetings",
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                            color: const Color(0xFF818182),
-                            fontFamily: reg,
-                            fontSize: 13,
-                            height: 1,
-                            fontWeight: FontWeight.w600)),
-                    SizedBox(
-                      height: height > 840 ? width * 0.25 : width * 0.15,
-                    ),
-                    SlideTransition(position: _offsetAnimation, child: email),
-                    SizedBox(
-                      height: height > 840 ? width * 0.06 : width * 0.06,
-                    ),
-                    SlideTransition(position: _offsetAnimation, child: pass),
-                    SizedBox(
-                      height: height > 840 ? width * 0.06 : width * 0.06,
-                    ),
-                    SizedBox(
-                      height: height > 840 ? width * 0.06 : width * 0.06,
-                    ),
-                    SlideTransition(
-                      position: _offsetAnimation,
-                      child: Button(
-                        text: "SIGN IN",
-                        press: () async {
-                          if (email.myController.text.isNotEmpty &&
-                              pass.myController.text.isNotEmpty) {
-                            setState(() {
-                              loading = true;
-                            });
-                            if (await AuthAPI.login(
-                                context,
-                                email.myController.text.toString(),
-                                pass.myController.text.toString())) {
-                              setState(() {
-                                loading = false;
-                              });
-                              Screen.replace(context, const GreetingScreen());
-                            } else {
-                              setState(() {
-                                loading = false;
-                              });
-                            }
-                          } else {
-                            Screen.showSnackBar(
-                                context: context, content: "Fill all Fields");
-                          }
-                        },
-                        bolds: true,
-                        fontSize: 16,
-                      ),
-                    ),
-                    SlideTransition(
-                      position: _offsetAnimation,
-                      child: SignUpButton(() {
-                        Screen.replace(context, const createAccount());
-                      }),
-                    ),
-                    const Spacer(),
-                    SlideTransition(
-                      position: _offsetAnimation2,
-                      child: Row(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Text(footer,
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontFamily: thin,
-                                fontSize: 14.5,
-                              )),
-                          Text(" $footer2",
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontFamily: reg,
-                                fontSize: 14.5,
-                              )),
-                        ],
-                      ),
-                    ),
-                    SizedBox(
-                      height: height > 840 ? width * 0.05 : width * 0.05,
-                    ),
-                  ],
-                ),
-                Visibility(
-                  visible: loading,
-                  child: Stack(
-                    alignment: Alignment.center,
+        backgroundColor: const Color(0xFFFCFBFF),
+        body: WillPopScope(
+          onWillPop: () async {
+            Screen.replace(context, const WelcomeScreen());
+            return false;
+          },
+          child: SingleChildScrollView(
+            child: SizedBox(
+              height: height,
+              width: width,
+              child: Stack(
+                alignment: Alignment.center,
+                children: [
+                  Column(
                     children: [
-                      Container(
-                        width: width,
-                        height: height,
-                        color: Color.fromARGB(128, 87, 100, 238),
+                      const Spacer(),
+                      Text(
+                        "LOGIN",
+                        style: TextStyle(
+                            color: const Color(0xFF091A31),
+                            fontFamily: bold,
+                            fontSize: 40,
+                            letterSpacing: 0.5,
+                            fontWeight: FontWeight.w900),
                       ),
-                      Shimmer.fromColors(
-                        baseColor: const Color(0xFF5763EE),
-                        direction: ShimmerDirection.ttb,
-                        highlightColor: const Color.fromARGB(128, 87, 100, 238),
-                        enabled: loading,
-                        child: Image.asset(
-                          Assets.logo,
-                          scale: 1.5,
-                          color: white,
+                      Text("Welcome to PEC Schedule Daily Meetings",
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                              color: const Color(0xFF818182),
+                              fontFamily: reg,
+                              fontSize: 13,
+                              height: 1,
+                              fontWeight: FontWeight.w600)),
+                      SizedBox(
+                        height: height > 840 ? width * 0.25 : width * 0.15,
+                      ),
+                      SlideTransition(position: _offsetAnimation, child: email),
+                      SizedBox(
+                        height: height > 840 ? width * 0.06 : width * 0.06,
+                      ),
+                      SlideTransition(position: _offsetAnimation, child: pass),
+                      SizedBox(
+                        height: height > 840 ? width * 0.06 : width * 0.06,
+                      ),
+                      SizedBox(
+                        height: height > 840 ? width * 0.06 : width * 0.06,
+                      ),
+                      SlideTransition(
+                        position: _offsetAnimation,
+                        child: Button(
+                          text: "SIGN IN",
+                          press: () async {
+                            if (email.myController.text.isNotEmpty &&
+                                pass.myController.text.isNotEmpty) {
+                              setState(() {
+                                loading = true;
+                              });
+                              if (await AuthAPI.login(
+                                  context,
+                                  email.myController.text.toString(),
+                                  pass.myController.text.toString())) {
+                                setState(() {
+                                  loading = false;
+                                });
+                                Screen.replace(context, const GreetingScreen());
+                              } else {
+                                setState(() {
+                                  loading = false;
+                                });
+                              }
+                            } else {
+                              Screen.showSnackBar(
+                                  context: context, content: "Fill all Fields");
+                            }
+                          },
+                          bolds: true,
+                          fontSize: 16,
                         ),
                       ),
-                      /*Image.asset(
-                        Assets.logo,
-                        scale: 1.5,
-                        color: const Color.fromARGB(180, 255, 255, 255),
-                      ),*/
+                      SlideTransition(
+                        position: _offsetAnimation,
+                        child: SignUpButton(() {
+                          Screen.replace(context, const createAccount());
+                        }),
+                      ),
+                      const Spacer(),
+                      SlideTransition(
+                        position: _offsetAnimation2,
+                        child: Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Text(footer,
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontFamily: thin,
+                                  fontSize: 14.5,
+                                )),
+                            Text(" $footer2",
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontFamily: reg,
+                                  fontSize: 14.5,
+                                )),
+                          ],
+                        ),
+                      ),
+                      SizedBox(
+                        height: height > 840 ? width * 0.05 : width * 0.05,
+                      ),
                     ],
                   ),
-                )
-              ],
+                  Visibility(
+                    visible: loading,
+                    child: Stack(
+                      alignment: Alignment.center,
+                      children: [
+                        Container(
+                          width: width,
+                          height: height,
+                          color: Color.fromARGB(128, 87, 100, 238),
+                        ),
+                        Shimmer.fromColors(
+                          baseColor: const Color(0xFF5763EE),
+                          direction: ShimmerDirection.ttb,
+                          highlightColor:
+                              const Color.fromARGB(128, 87, 100, 238),
+                          enabled: loading,
+                          child: Image.asset(
+                            Assets.logo,
+                            scale: 1.5,
+                            color: white,
+                          ),
+                        ),
+                        /*Image.asset(
+                          Assets.logo,
+                          scale: 1.5,
+                          color: const Color.fromARGB(180, 255, 255, 255),
+                        ),*/
+                      ],
+                    ),
+                  )
+                ],
+              ),
             ),
           ),
         ));

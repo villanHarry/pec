@@ -1,41 +1,95 @@
 PODS:
+  - agora_rtc_engine (6.1.0):
+    - AgoraIrisRTC_iOS (= 4.1.0-rc.2)
+    - AgoraRtcEngine_iOS (= 4.1.0)
+    - Flutter
+  - AgoraIrisEventFlutter_iOS (2.0.0)
+  - AgoraIrisRTC_iOS (4.1.0-rc.2)
+  - AgoraRtcEngine_iOS (4.1.0):
+    - AgoraRtcEngine_iOS/AIAEC (= 4.1.0)
+    - AgoraRtcEngine_iOS/AINS (= 4.1.0)
+    - AgoraRtcEngine_iOS/AudioBeauty (= 4.1.0)
+    - AgoraRtcEngine_iOS/ClearVision (= 4.1.0)
+    - AgoraRtcEngine_iOS/ContentInspect (= 4.1.0)
+    - AgoraRtcEngine_iOS/DRM (= 4.1.0)
+    - AgoraRtcEngine_iOS/ReplayKit (= 4.1.0)
+    - AgoraRtcEngine_iOS/RtcBasic (= 4.1.0)
+    - AgoraRtcEngine_iOS/SpatialAudio (= 4.1.0)
+    - AgoraRtcEngine_iOS/SuperResolution (= 4.1.0)
+    - AgoraRtcEngine_iOS/VirtualBackground (= 4.1.0)
+    - AgoraRtcEngine_iOS/VQA (= 4.1.0)
+  - AgoraRtcEngine_iOS/AIAEC (4.1.0)
+  - AgoraRtcEngine_iOS/AINS (4.1.0)
+  - AgoraRtcEngine_iOS/AudioBeauty (4.1.0)
+  - AgoraRtcEngine_iOS/ClearVision (4.1.0)
+  - AgoraRtcEngine_iOS/ContentInspect (4.1.0)
+  - AgoraRtcEngine_iOS/DRM (4.1.0)
+  - AgoraRtcEngine_iOS/ReplayKit (4.1.0)
+  - AgoraRtcEngine_iOS/RtcBasic (4.1.0)
+  - AgoraRtcEngine_iOS/SpatialAudio (4.1.0)
+  - AgoraRtcEngine_iOS/SuperResolution (4.1.0)
+  - AgoraRtcEngine_iOS/VirtualBackground (4.1.0)
+  - AgoraRtcEngine_iOS/VQA (4.1.0)
   - Flutter (1.0.0)
   - FMDB (2.7.5):
     - FMDB/standard (= 2.7.5)
   - FMDB/standard (2.7.5)
   - image_picker (0.0.1):
     - Flutter
+  - iris_event (0.0.1):
+    - AgoraIrisEventFlutter_iOS (= 2.0.0)
+    - Flutter
   - path_provider_ios (0.0.1):
+    - Flutter
+  - permission_handler_apple (9.0.4):
     - Flutter
   - sqflite (0.0.2):
     - Flutter
     - FMDB (>= 2.7.5)
 
 DEPENDENCIES:
+  - agora_rtc_engine (from `.symlinks/plugins/agora_rtc_engine/ios`)
   - Flutter (from `Flutter`)
   - image_picker (from `.symlinks/plugins/image_picker/ios`)
+  - iris_event (from `.symlinks/plugins/iris_event/ios`)
   - path_provider_ios (from `.symlinks/plugins/path_provider_ios/ios`)
+  - permission_handler_apple (from `.symlinks/plugins/permission_handler_apple/ios`)
   - sqflite (from `.symlinks/plugins/sqflite/ios`)
 
 SPEC REPOS:
   trunk:
+    - AgoraIrisEventFlutter_iOS
+    - AgoraIrisRTC_iOS
+    - AgoraRtcEngine_iOS
     - FMDB
 
 EXTERNAL SOURCES:
+  agora_rtc_engine:
+    :path: ".symlinks/plugins/agora_rtc_engine/ios"
   Flutter:
     :path: Flutter
   image_picker:
     :path: ".symlinks/plugins/image_picker/ios"
+  iris_event:
+    :path: ".symlinks/plugins/iris_event/ios"
   path_provider_ios:
     :path: ".symlinks/plugins/path_provider_ios/ios"
+  permission_handler_apple:
+    :path: ".symlinks/plugins/permission_handler_apple/ios"
   sqflite:
     :path: ".symlinks/plugins/sqflite/ios"
 
 SPEC CHECKSUMS:
+  agora_rtc_engine: a84afbebf11801043623d3b5f994bb69d4159948
+  AgoraIrisEventFlutter_iOS: d7ee4acb57d9042dbe9d64229bfe9bf8e32b6f2f
+  AgoraIrisRTC_iOS: 820fbab2d78d870a1bad4b1a02f950a390c73b48
+  AgoraRtcEngine_iOS: 33f0136ad4196b2a31c8470e6b536fe77fb25f8b
   Flutter: 50d75fe2f02b26cc09d224853bb45737f8b3214a
   FMDB: 2ce00b547f966261cd18927a3ddb07cb6f3db82a
   image_picker: 50e7c7ff960e5f58faa4d1f4af84a771c671bc4a
+  iris_event: fdcf9bbb53095fd9609ea19941df551d0398a789
   path_provider_ios: 14f3d2fd28c4fdb42f44e0f751d12861c43cee02
+  permission_handler_apple: 44366e37eaf29454a1e7b1b7d736c2cceaeb17ce
   sqflite: 6d358c025f5b867b29ed92fc697fd34924e11904
 
 PODFILE CHECKSUM: aafe91acc616949ddb318b77800a7f51bffa2a4c
