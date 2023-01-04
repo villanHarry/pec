@@ -2,4 +2,4 @@
  CRM project
  
  link to download the latest build:
- => Link: https://i.diawi.com/pC6dZL
+ => Link: https://i.diawi.com/on7mWV
