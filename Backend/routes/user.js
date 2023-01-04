@@ -2,6 +2,7 @@ const router = require("express").Router();
 const userSchema = require("../models/userModel");
 const db = require('../server');
 const bcrypt = require('bcrypt');
+const MongoClient = require('mongodb').MongoClient;
 const saltRounds = 10;
 
 router.get('/', async (req,res)=>{
