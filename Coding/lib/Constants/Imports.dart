@@ -26,6 +26,7 @@ export 'package:flutter_advanced_drawer/flutter_advanced_drawer.dart';
 export 'package:pec/Screen/drawer.dart';
 export 'package:pec/Screen/VideoCall.dart';
 export '../Screen/MeetingFormScreen.dart';
+export '../Services/API/MeetingAPI.dart';
 
 //Internet check
 export '../Services/InternetCheck.dart';

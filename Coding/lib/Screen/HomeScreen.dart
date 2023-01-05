@@ -59,6 +59,8 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
   int _start = 0;
   bool backpress = false;
 
+  bool loading = false;
+
   @override
   void initState() {
     SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
@@ -135,106 +137,44 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
     return CustomDrawer(
       user: CurrentUser,
       advancedDrawerController: advancedDrawerController,
-      child: Scaffold(
-        backgroundColor: const Color(0xFFFCFBFF),
-        appBar: appbar(),
-        /*floatingActionButton: CurrentUser.userType == "master"
-            ? FloatingActionButton(
-                onPressed: () {
-                  Screen.push(context, const MeetingFormScreen());
-                },
-                backgroundColor: const Color.fromARGB(255, 0, 64, 255),
-                child: Icon(Icons.add, color: white),
-              )
-            : null,*/
-        body: WillPopScope(
-          onWillPop: () async {
-            if (!backpress) {
-              Screen.showSnackBar(
-                  context: context, content: "Press Again to exit");
-              setState(() {
-                backpress = true;
-                _start = 1;
-              });
-              startTimer();
-            } else {
-              return true;
-            }
-            return false;
-          },
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 18.5),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  past ? "Past Meetings" : "Upcoming Meetings",
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontSize: 15,
-                    letterSpacing: 0.5,
-                    fontFamily: bold,
-                    fontWeight: FontWeight.w900,
-                    color: const Color(0xFF9393A0),
-                  ),
-                ),
-                SizedBox(
-                  height: width * .08,
-                ),
-                SlideTransition(
-                    position: _offsetAnimation3,
-                    child: AnimatedOpacity(
-                        opacity: showCalender ? 1.0 : 0.0,
-                        duration: const Duration(milliseconds: 300),
-                        child: Visibility(
-                          visible: showCalender,
-                          child: Padding(
-                            padding: EdgeInsets.only(bottom: width * .08),
-                            child: TableCalendar(
-                              focusedDay: currentDate,
-                              currentDay: currentDate,
-                              firstDay: currentDate
-                                  .subtract(Duration(days: firstDay)),
-                              lastDay: currentDate.add(Duration(days: lastDay)),
-                              calendarFormat: CalendarFormat.week,
-                              startingDayOfWeek: StartingDayOfWeek.monday,
-                              headerVisible: false,
-                              rowHeight: 60,
-                              daysOfWeekHeight: 25,
-                              onDaySelected: (select, notSelected) {
-                                setState(() {
-                                  currentDate = select;
-                                });
-                                DateSetting();
-                              },
-                              daysOfWeekStyle: DaysOfWeekStyle(
-                                dowTextFormatter: (date, locale) =>
-                                    DateFormat.E(locale)
-                                        .format(date)
-                                        .toUpperCase(),
-                              ),
-                              calendarStyle: CalendarStyle(
-                                todayDecoration: const BoxDecoration(
-                                    color: Color(0xFF546DF6),
-                                    borderRadius:
-                                        BorderRadius.all(Radius.circular(10))),
-                                defaultDecoration: BoxDecoration(
-                                    border: Border.all(color: Colors.grey),
-                                    borderRadius: const BorderRadius.all(
-                                        Radius.circular(10))),
-                                weekendDecoration: BoxDecoration(
-                                    border: Border.all(color: Colors.grey),
-                                    borderRadius: const BorderRadius.all(
-                                        Radius.circular(10))),
-                              ),
-                            ),
-                          ),
-                        ))),
-                Row(
+      child: Stack(
+        alignment: Alignment.center,
+        children: [
+          Scaffold(
+            backgroundColor: const Color(0xFFFCFBFF),
+            appBar: appbar(),
+            /*floatingActionButton: CurrentUser.userType == "master"
+                ? FloatingActionButton(
+                    onPressed: () {
+                      Screen.push(context, const MeetingFormScreen());
+                    },
+                    backgroundColor: const Color.fromARGB(255, 0, 64, 255),
+                    child: Icon(Icons.add, color: white),
+                  )
+                : null,*/
+            body: WillPopScope(
+              onWillPop: () async {
+                if (!backpress) {
+                  Screen.showSnackBar(
+                      context: context, content: "Press Again to exit");
+                  setState(() {
+                    backpress = true;
+                    _start = 1;
+                  });
+                  startTimer();
+                } else {
+                  return true;
+                }
+                return false;
+              },
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 18.5),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      "Meetings",
-                      textAlign: TextAlign.start,
+                      past ? "Past Meetings" : "Upcoming Meetings",
+                      textAlign: TextAlign.center,
                       style: TextStyle(
                         fontSize: 15,
                         letterSpacing: 0.5,
@@ -243,34 +183,147 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                         color: const Color(0xFF9393A0),
                       ),
                     ),
-                    const Spacer(),
-                    Text(
-                      "See All Meetings",
-                      textAlign: TextAlign.start,
-                      style: TextStyle(
-                        fontSize: 15,
-                        letterSpacing: 0.5,
-                        fontFamily: reg,
-                        color: const Color.fromARGB(255, 0, 64, 255),
-                        decoration: TextDecoration.underline,
-                      ),
+                    SizedBox(
+                      height: width * .08,
                     ),
+                    SlideTransition(
+                        position: _offsetAnimation3,
+                        child: AnimatedOpacity(
+                            opacity: showCalender ? 1.0 : 0.0,
+                            duration: const Duration(milliseconds: 300),
+                            child: Visibility(
+                              visible: showCalender,
+                              child: Padding(
+                                padding: EdgeInsets.only(bottom: width * .08),
+                                child: TableCalendar(
+                                  focusedDay: currentDate,
+                                  currentDay: currentDate,
+                                  firstDay: currentDate
+                                      .subtract(Duration(days: firstDay)),
+                                  lastDay:
+                                      currentDate.add(Duration(days: lastDay)),
+                                  calendarFormat: CalendarFormat.week,
+                                  startingDayOfWeek: StartingDayOfWeek.monday,
+                                  headerVisible: false,
+                                  rowHeight: 60,
+                                  daysOfWeekHeight: 25,
+                                  onDaySelected: (select, notSelected) {
+                                    setState(() {
+                                      currentDate = select;
+                                    });
+                                    DateSetting();
+                                  },
+                                  daysOfWeekStyle: DaysOfWeekStyle(
+                                    dowTextFormatter: (date, locale) =>
+                                        DateFormat.E(locale)
+                                            .format(date)
+                                            .toUpperCase(),
+                                  ),
+                                  calendarStyle: CalendarStyle(
+                                    todayDecoration: const BoxDecoration(
+                                        color: Color(0xFF546DF6),
+                                        borderRadius: BorderRadius.all(
+                                            Radius.circular(10))),
+                                    defaultDecoration: BoxDecoration(
+                                        border: Border.all(color: Colors.grey),
+                                        borderRadius: const BorderRadius.all(
+                                            Radius.circular(10))),
+                                    weekendDecoration: BoxDecoration(
+                                        border: Border.all(color: Colors.grey),
+                                        borderRadius: const BorderRadius.all(
+                                            Radius.circular(10))),
+                                  ),
+                                ),
+                              ),
+                            ))),
+                    Row(
+                      children: [
+                        Text(
+                          "Meetings",
+                          textAlign: TextAlign.start,
+                          style: TextStyle(
+                            fontSize: 15,
+                            letterSpacing: 0.5,
+                            fontFamily: bold,
+                            fontWeight: FontWeight.w900,
+                            color: const Color(0xFF9393A0),
+                          ),
+                        ),
+                        const Spacer(),
+                        Text(
+                          "See All Meetings",
+                          textAlign: TextAlign.start,
+                          style: TextStyle(
+                            fontSize: 15,
+                            letterSpacing: 0.5,
+                            fontFamily: reg,
+                            color: const Color.fromARGB(255, 0, 64, 255),
+                            decoration: TextDecoration.underline,
+                          ),
+                        ),
+                      ],
+                    ),
+                    SizedBox(
+                      height: width * .06,
+                    ),
+                    Expanded(
+                        child: ListView.builder(
+                      itemCount: 3,
+                      itemBuilder: (context, index) {
+                        return MeetingNode(
+                          onpress: () async {
+                            setState(() {
+                              loading = true;
+                            });
+                            if (await MeetingAPI.MeetingId(context)) {
+                              setState(() {
+                                loading = false;
+                              });
+                              Screen.push(context, const VideoCall());
+                            } else {
+                              setState(() {
+                                loading = false;
+                              });
+                            }
+                          },
+                        );
+                      },
+                    ))
                   ],
                 ),
-                SizedBox(
-                  height: width * .06,
-                ),
-                Expanded(
-                    child: ListView.builder(
-                  itemCount: 3,
-                  itemBuilder: (context, index) {
-                    return const MeetingNode();
-                  },
-                ))
-              ],
+              ),
             ),
           ),
-        ),
+          Visibility(
+            visible: loading,
+            child: Stack(
+              alignment: Alignment.center,
+              children: [
+                Container(
+                  width: width,
+                  height: height,
+                  color: Color.fromARGB(128, 87, 100, 238),
+                ),
+                Shimmer.fromColors(
+                  baseColor: const Color(0xFF5763EE),
+                  direction: ShimmerDirection.ttb,
+                  highlightColor: const Color.fromARGB(128, 87, 100, 238),
+                  enabled: loading,
+                  child: Image.asset(
+                    Assets.logo,
+                    scale: 1.5,
+                    color: white,
+                  ),
+                ),
+                /*Image.asset(
+                          Assets.logo,
+                          scale: 1.5,
+                          color: const Color.fromARGB(180, 255, 255, 255),
+                        ),*/
+              ],
+            ),
+          )
+        ],
       ),
     );
   }
@@ -528,7 +581,9 @@ class _navIconState extends State<navIcon> {
 }
 
 class MeetingNode extends StatefulWidget {
-  const MeetingNode({Key? key}) : super(key: key);
+  const MeetingNode({Key? key, required this.onpress}) : super(key: key);
+
+  final VoidCallback onpress;
 
   @override
   State<MeetingNode> createState() => _MeetingNodeState();
@@ -726,9 +781,7 @@ class _MeetingNodeState extends State<MeetingNode> {
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
                           InkWell(
-                            onTap: () {
-                              Screen.push(context, const VideoCall());
-                            },
+                            onTap: widget.onpress,
                             child: Container(
                               padding: const EdgeInsets.symmetric(
                                   vertical: 8.0, horizontal: 30.0),

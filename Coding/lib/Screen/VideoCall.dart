@@ -3,11 +3,7 @@ import 'dart:async';
 import 'package:agora_rtc_engine/agora_rtc_engine.dart';
 import 'package:flutter/material.dart';
 import 'package:permission_handler/permission_handler.dart';
-
-const appId = "d94206299bdc491498490f66692b5335";
-const token =
-    "007eJxTYCit7mqZ2Nx46+SaPUWq/5j/7dl4SIhdLyfsdof4qvlhZXcVGFIsTYwMzIwsLZNSkk0sDU0sLUwsDdLMzMwsjZJMjY1Nld5uSW4IZGSod65lYmSAQBCfnaEktbgkMy+dgQEA78kg6A==";
-const channel = "testing";
+import '../Constants/Constants.dart';
 
 class VideoCall extends StatefulWidget {
   const VideoCall({Key? key}) : super(key: key);
@@ -90,6 +86,7 @@ class _VideoCallState extends State<VideoCall> {
 
   @override
   void dispose() {
+    _engine.leaveChannel();
     videoController.dispose();
     remoteVideoController.dispose();
     // TODO: implement dispose

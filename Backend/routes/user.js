@@ -1,16 +1,33 @@
 const router = require("express").Router();
 const userSchema = require("../models/userModel");
+const meetingSchema = require("../models/meetingModel");
+const MongoClient = require('mongodb').MongoClient;
 const db = require('../server');
 const bcrypt = require('bcrypt');
 const MongoClient = require('mongodb').MongoClient;
 const saltRounds = 10;
 
-router.get('/', async (req,res)=>{
+router.get('/meeting', async (req,res)=>{
   try{
-    const data = await userSchema.find();
-    res.json(data);
+    const data = await meetingSchema.find();
+    if(data.length>0)
+    {
+      res.json({
+        message: "Meeting Id Fetched",
+        meeting: {
+          "MeetingID": data[0]["MeetingId"]
+        }
+      });
+    } else {
+      res.json({
+        message: "Meeting Id Not Fetched",
+        meeting: {
+          "MeetingID": ""
+        }
+      });
+    }
   } catch (c){
-    res.send(c);
+    res.status(500).json({ message: c.message });
   }
 });
 
