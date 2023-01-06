@@ -4,7 +4,6 @@ const meetingSchema = require("../models/meetingModel");
 const MongoClient = require('mongodb').MongoClient;
 const db = require('../server');
 const bcrypt = require('bcrypt');
-const MongoClient = require('mongodb').MongoClient;
 const saltRounds = 10;
 
 router.get('/meeting', async (req,res)=>{

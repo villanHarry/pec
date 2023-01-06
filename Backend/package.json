@@ -1,9 +1,6 @@
 {
   "name": "pec_backend",
   "description": "pec backend",
-  "engines": {
-    "node": "v18.12.1"
-  },
   "version": "1.0.0",
   "author": "villanHarry",
   "license": "MIT",
